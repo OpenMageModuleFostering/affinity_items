@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <default>
+        <!-- for all pages -->
+        <reference name="left">
+            <block type="affinityitems/index" name="ae_vertical_left"  after="_" template="affinityengine/vertical.phtml"/>
+        </reference>
+        <reference name="right">
+            <block type="affinityitems/index" name="ae_vertical_right"  after="_" template="affinityengine/vertical.phtml"/>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/affinityitems/affinityitems.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>js/affinityitems/jquery-noconflict.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/affinityitems/affinityitems.js</name></action>
+   			<block type="affinityitems/index" name="ae_css" after="_" template="affinityengine/ae_css.phtml" />
+        </reference>
+         <reference name="content">
+            <block type="affinityitems/index" name="ae_js" after="_" template="affinityengine/ae_js.phtml"/>
+        </reference>
+    </default>
+    
+    <!-- for home page -->
+    <cms_index_index>
+        <reference name="content">
+            <block type="affinityitems/index" name="ae_horizontal" after="_" template="affinityengine/horizontal.phtml"/>
+        </reference>
+    </cms_index_index>
+    
+    <!-- for product view page -->    
+    <catalog_product_view>
+        <reference name="content">
+            <block type="affinityitems/index" name="ae_horizontal" after="_" template="affinityengine/horizontal.phtml"/>
+        </reference>
+    </catalog_product_view>
+    
+    <!-- for category layered page -->
+    <catalog_category_layered>
+        <reference name="content">
+            <block type="affinityitems/index" name="ae_horizontal" after="_" template="affinityengine/horizontal.phtml"/>
+        </reference>
+    </catalog_category_layered>
+    
+    <!-- for category page -->
+    <catalog_category_default>
+        <reference name="content">
+            <block type="affinityitems/index" name="ae_horizontal" after="_" template="affinityengine/horizontal.phtml"/>
+        </reference>
+    </catalog_category_default>
+    
+    <!-- for search page -->
+    <catalogsearch_result_index>
+        <reference name="content">
+            <block type="affinityitems/index" name="ae_horizontal" after="_" template="affinityengine/horizontal.phtml"/>
+        </reference>
+    </catalogsearch_result_index>
+    
+    <!-- for advanced search page -->
+    <catalogsearch_advanced_result>
+        <reference name="content">
+            <block type="affinityitems/index" name="ae_horizontal" after="_" template="affinityengine/horizontal.phtml"/>
+        </reference>
+    </catalogsearch_advanced_result>
+    
+    <!-- for cart page -->
+    <checkout_cart_index>
+        <reference name="content">
+            <block type="affinityitems/index" name="ae_horizontal" after="_" template="affinityengine/horizontal.phtml"/>
+        </reference>
+    </checkout_cart_index>
+</layout>

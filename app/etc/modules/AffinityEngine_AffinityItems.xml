@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <AffinityEngine_AffinityItems>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>1.0.0</version>
+    </AffinityEngine_AffinityItems>
+  </modules>
+</config>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <affinityitems_adminhtml_affinityitemsbackend_index>
+        <reference name="content">
+            <block type="affinityitems/adminhtml_affinityitemsbackend" name="affinityitemsbackend">
+                <action method="setCacheLifetime"><s>null</s></action>
+            </block>
+        </reference>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>affinityengine/main.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>affinityengine/jquery-noconflict.js</name>
+            </action>
+        </reference>
+    </affinityitems_adminhtml_affinityitemsbackend_index>
+    <affinityitems_adminhtml_affinityitemslog_index>
+        <reference name="content">
+            <block type="affinityitems/adminhtml_affinityitems" name="affinityitems">
+                <action method="setCacheLifetime"><s>null</s></action>
+            </block> 
+        </reference>
+    </affinityitems_adminhtml_affinityitemslog_index>
+</layout>

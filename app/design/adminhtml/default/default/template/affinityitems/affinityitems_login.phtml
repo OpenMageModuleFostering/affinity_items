@@ -1,0 +1,117 @@
+<script>
+var v = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+var n = /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
+var r;
+
+function error(e) {
+	jQuery(".items-alert").hide();
+	jQuery(".items-alert").empty();
+	var t = "Please enter valid data : <br>";
+	for (var n = 0; n < e.length; n++) {
+		var r = n + 1;
+		t += "\n" + r + ". " + e[n] + "<br>";
+	}
+	jQuery(".items-alert").append(t);
+	jQuery(".items-alert").slideDown();
+}
+
+jQuery(document).ready(function () {
+
+	jQuery('.items-register-container').on('submit', function() {
+		r = [];
+		if (!v.test(jQuery("#remail").val())) {
+			r[r.length] = "Please enter a valid email address";
+		}
+		if (!n.test(jQuery("#rpassword").val())) {
+			r[r.length] = "Your password must be between 6 and 20 characters long";
+		}
+		if(!jQuery('#rcgv').is(':checked')) {
+			r[r.length] = "Please accept the terms and conditions of use";
+		}
+		if (r.length > 0) {
+			error(r);
+			return false;
+		} else {
+			jQuery.ajax({
+				url: "<?php echo Mage::helper("affinityitems/aeadapter")->getRegisterUrl();?>",
+				type: "POST",
+				async: true,
+				data: {
+					action: "register",
+					email: jQuery("#remail").val(),
+					password: jQuery("#rpassword").val(),
+					discountCode: jQuery("#rdiscount").val(),
+					form_key: jQuery("#rform_key").val()
+				},
+				success: function (e, t, n) {
+					var response = e;
+					if(response._ok == "true") {
+						location.reload();
+					} else {
+						r = [];
+						if(typeof response._errorMessage != "undefined") {
+							r[r.length] = response._errorMessage;
+						} else {
+							r[r.length] = "An error has occured, it seems there is no connection between your shop and our servers, please contact <a href=\'mailto:mathieu@affinity-engine.fr\'>mathieu@affinity-engine.fr</a>";
+						}
+						error(r);
+					}
+				},
+				error: function (e, t, n) {
+					r = [];
+					r[r.length] = "An error has occured, please contact <a href=\'mailto:mathieu@affinity-engine.fr\'>mathieu@affinity-engine.fr</a>";
+					error(r);
+				}
+			});
+}
+return false;
+});
+
+});
+
+</script>
+
+<div class="items-wrapper">
+	<div class="items-header">
+		<div class="aelogo"></div>
+	</div>
+	<div class="items-alert" style="display:none;"></div>
+	<div class="items-content">
+		<div class="items-auth-zone">
+			<div class="items-auth-container items-left">
+				<div class="items-auth-register">
+					<h3><?php echo Mage::helper('affinityitems')->__('Sign up for 30-days free trial');?></h3>
+					<p><?php echo Mage::helper('affinityitems')->__('To get a clear view of the impact on your sales');?></p>
+					<p><?php echo Mage::helper('affinityitems')->__('at the end of the trial');?></p>
+					<form class="items-register-container">
+						<input type="text" class="aeinput" id="remail" value="" placeholder="<?php echo Mage::helper('affinityitems')->__('Email'); ?>">
+						<br>
+						<input type="password" class="aeinput" id="rpassword" placeholder="<?php echo Mage::helper('affinityitems')->__('Password'); ?>">
+						<br>
+						<input type="text" class="aeinput" id="rdiscount" placeholder="<?php echo Mage::helper('affinityitems')->__('Discount code'); ?>" style="display: inline-block;">
+						<br>
+						<p class="ae-cgv"><input type="checkbox" id="rcgv">
+							<?php echo Mage::helper('affinityitems')->__('I accept the');?> <a target='_blank' href="{$module_dir|escape:'htmlall':'UTF-8'}resources/pdf/contract.pdf" ><?php echo Mage::helper('affinityitems')->__('terms and conditions of use.');?></a>
+						</p>
+						<input id="aeregister" style="margin-top: 67px;" class="items-button items-green" type="submit" value="<?php echo Mage::helper('affinityitems')->__('Install AffinityItems');?>">
+						<input name="form_key" id="rform_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+					</form>
+				</div>
+			</div>
+			<div class="items-auth-presentation items-right">
+				<div class="items-auth-presentation-content">
+					<h3><?php echo Mage::helper('affinityitems')->__('Boost your transformation rate');?></h3>
+					<p><?php echo Mage::helper('affinityitems')->__('Suggest automatically, on each page,');?></p>
+					<p><?php echo Mage::helper('affinityitems')->__('a selection of products that match each visitor needs.');?></p>
+					<div class="items-video">
+						<span class="items-video-promotion"><object type="text/html" data="http://www.youtube.com/embed/rxn3fHYNL3s" width="340" height="210"></object></span>
+					</div>
+					<p><?php echo Mage::helper('affinityitems')->__('Up to 60% products sold');?></p>
+					<p><?php echo Mage::helper('affinityitems')->__('have been recommended by affinity items.');?></p>
+					<a class="items-button items-purple" href="http://addons.prestashop.com/fr/ventes-croisees-cross-selling/17491-affinityitems.html"><?php echo Mage::helper('affinityitems')->__('More about');?></a>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>

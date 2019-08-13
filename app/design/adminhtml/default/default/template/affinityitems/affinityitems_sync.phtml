@@ -1,0 +1,123 @@
+<?php
+$helper = Mage::helper('affinityitems/aeadapter');
+$request = new AffinityEngine_AffinityItems_Model_Sdk_Request_SiteRequest(array());
+$data = $request->get();
+$statistics = Mage::helper('core')->jsonDecode($data['statistics']);
+$siteId = $helper->getSiteId();
+$categories = $helper->checkSync('categories');
+$products = $helper->checkSync('products');
+$cart = $helper->checkSync('cart');
+$orders = $helper->checkSync('orders');
+$actions = $helper->checkSync('actions');
+$isSynced = (bool) ($categories && $products && $cart && $orders && $actions);
+$initialsync = (count(Mage::getModel('affinityitems/syncrotate')->getCollection())) ? (bool) Mage::getModel('affinityitems/syncrotate')->getCollection()->getFirstItem()->getData('initial_sync') : true;
+?>
+
+<div class="aewrapper">
+    <?php if ($data['_ok']): ?>
+    <div class="items-account">
+        <a class="items-manager-button" target="_blank" href="http://manager.affinityitems.com/login/<?php echo $siteId . '/' . $data['authToken']; ?>">
+            <div class="items-button">
+                <?php echo $this->__('Access my account') ?>
+            </div>
+        </a>
+    </div>
+<?php endif; ?>
+</div>
+
+<div class="items-wrapper">
+    <div class="items-header">
+        <div class="aelogo"></div>
+    </div>
+    <div id="items-dashboard" style="display: block;">
+
+        <?php if($data['authToken']) { ?>
+
+        <div class="items-synchronize-container" style="background-color: rgb(130, 200, 54);">
+
+            <div class="items-synchronize-container-text items-left">
+                <?php echo $this->__('Affinity items is activated and operational') ?>
+            </div>
+
+            <a class="items-manager-button" target="_blank" href="http://manager.affinityitems.com/login/<?php echo $siteId . '/' . $data['authToken']; ?>">
+                <div style="color: white;" class="items-synchronize-container-button items-green items-right">
+                    <?php echo $this->__('Access my account') ?>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </div>
+
+        <?php } else { ?>
+
+        <br />
+
+        <?php } ?>
+
+        <div class="items-boxes">
+
+            <div class="items-box items-box-black">
+                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['onlineUsers']) ? $statistics['onlineUsers'] : 0; ?></span> <br> <span> <?php echo $this->__('current connected visitors'); ?> </span></p>
+            </div>
+
+            <div class="items-box items-box-black">
+                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['cartsInProgress']) ? $statistics['cartsInProgress'] : 0; ?></span> <br> <span><?php echo $this->__('current carts'); ?></span></p>
+            </div>
+
+            <div class="items-box items-box-purple">
+                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['lastMonthVisitsWithRecommendation']) ? $statistics['lastMonthVisitsWithRecommendation'] : 0; ?></span> <br> <span><?php echo $this->__('visits with recommendations'); ?></span></p>
+            </div>
+
+            <div class="items-box items-box-purple">
+                <p><span class="items-box-large-font"><?php echo round(($statistics['bestClickRate']['rate']*100), 2); ?> %</span> <br> <span> <?php echo $this->__('recommendations click rate on'); ?> <?php echo $statistics['bestClickRate']['hook'] ?> page*</span></p>
+            </div>
+
+            <div class="items-box items-box-purple">
+                <p><span class="items-box-large-font"><?php echo round($statistics['lastMonthClickersConversationRate'], 2); ?> %</span> <br> <span><?php echo $this->__('transformation rate among clickers'); ?> *</span></p>
+            </div>
+
+            <div class="items-box items-box-black">
+                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['lastMonthOrders']) ? $statistics['lastMonthOrders'] : 0;  ?></span> <br> <span> <?php echo $this->__('orders last 30 days'); ?></span></p>
+            </div>
+
+            <div class="items-box items-box-black">
+                <p><span class="items-box-large-font"><?php echo round($statistics['lastMonthSales'], 0) ?></span> <br> <span><?php echo $this->__('sales last 30 days'); ?></span></p>
+            </div>
+
+            <div class="items-box items-box-purple">
+                <p><span class="items-box-large-font"><?php echo is_numeric($data['recommendation']) ? $data['recommendation'] : 0; ?></span> <br> <span><?php echo $this->__('recommandations since 30 days'); ?></span></p>
+            </div>
+
+            <div class="items-box items-box-purple">
+                <p><span class="items-box-large-font"><?php echo round($statistics['salesAfterClick'], 0) ?> €</span> <br> <span><?php echo $this->__('of sales following click on recommendations'); ?> *</span></p>
+            </div>
+
+            <div class="items-box items-box-purple">
+                <p><span class="items-box-large-font"><?php echo round($statistics['salesAfterReco'], 0) ?> €</span> <br> <span><?php echo $this->__('of sales following a recommendation'); ?> *</span></p>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+
+    <div class="items-synchronization">
+        <div>
+            <?php if ($initialsync):?>
+            <h2><?php echo $this->__('Initial sync in progress'); ?></h2>
+        <?php else:?>
+        <h2><?php echo ($isSynced) ? $this->__('Your system is synchronized') : $this->__('Your system is not synchronized'); ?></h2>
+    <?php endif;?>
+</div>
+<div>
+    <ul>
+        <li class="<?php echo ($categories) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Categories synchronization'); ?></li>
+        <li class="<?php echo ($products) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Products synchronization'); ?></li>
+        <li class="<?php echo ($cart) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Carts synchronization'); ?></li>
+        <li class="<?php echo ($orders) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Orders synchronization'); ?></li>
+        <li class="<?php echo ($actions) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Actions synchronization'); ?></li>
+    </ul>
+</div>
+</div>
+
+</div>
