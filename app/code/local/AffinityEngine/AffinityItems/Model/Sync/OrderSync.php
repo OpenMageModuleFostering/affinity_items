@@ -102,9 +102,23 @@ class AffinityEngine_AffinityItems_Model_Sync_OrderSync extends AffinityEngine_A
             $orderLine->attributeIds = $attributes;
             $orderLine->quantity = (int) $item->getQtyOrdered();
             array_push($orderLines, $orderLine);
+            
+            // sync qty/stock if needed
+            $this->syncQtyCheck($item->getProductId());
+            
         }
 
         return $orderLines;
+    }
+    
+    public function syncQtyCheck($pid) {
+        if ($pid) {
+            $product = Mage::getModel('catalog/product')->load($pid);
+            $stock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($product);
+            if ($stock->getIsInStock() == 0 || $stock->getQty() == 0) {
+                Mage::getModel('affinityitems/sync_productSync')->syncProductFromObserver($pid);
+            }
+        }
     }
 
 }

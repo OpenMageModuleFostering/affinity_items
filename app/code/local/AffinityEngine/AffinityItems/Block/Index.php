@@ -24,7 +24,7 @@ class AffinityEngine_AffinityItems_Block_Index extends Mage_Core_Block_Template 
                 // $orderLines = $this->getCartOrderLines(); 
                 // $context = "recoCart";
             } elseif (strpos($path, 'category')) {
-                $refs =  (Mage::registry('current_category')) ? Mage::registry('current_category')->getId() : false;
+                $refs = (Mage::registry('current_category')) ? Mage::registry('current_category')->getId() : false;
                 $refType = "category";
                 //$category_id = (Mage::registry('current_category')) ? Mage::registry('current_category')->getId() : false;
                 // $context = "recoCategory";
@@ -44,27 +44,31 @@ class AffinityEngine_AffinityItems_Block_Index extends Mage_Core_Block_Template 
 
         $aecontext = new stdClass();
         //$aecontext->context = $context;
-        
+
         $aecontext->recoId = $recoId;
 
         if (isset($area))
             $aecontext->area = $area;
         $aecontext->size = (int) $no_prod;
-        /*if (isset($product))
-            $aecontext->productId = (string) $product;
-        if (isset($category_id))
-            $aecontext->categoryId = (string) $category_id;
-        if (isset($orderLines))
-            $aecontext->orderLines = $orderLines;*/
-        if(isset($refs)) {
-            if(!is_array($refs))
+        /* if (isset($product))
+          $aecontext->productId = (string) $product;
+          if (isset($category_id))
+          $aecontext->categoryId = (string) $category_id;
+          if (isset($orderLines))
+          $aecontext->orderLines = $orderLines; */
+        if (isset($refs)) {
+            if (!is_array($refs))
                 $refs = array($refs);
             $aecontext->refs = $refs;
         }
-        if(isset($refType))
+        if (isset($refType))
             $aecontext->refType = $refType;
         if (isset($expr))
             $aecontext->keywords = (string) $expr;
+        if (isset($refType) && $refType == 'category')
+            $aecontext = $this->getFacetAttributes($aecontext);
+
+        $this->helper('affinityitems')->log('[DEBUG]', $aecontext);
         $recomemendation = new AffinityEngine_AffinityItems_Model_Sdk_Recommendation_Recommendation($aecontext, false);
         $products = $recomemendation->getRecommendation();
 
@@ -72,6 +76,19 @@ class AffinityEngine_AffinityItems_Block_Index extends Mage_Core_Block_Template 
             return $this->loadProductsById($products['recommend']);
         }
         return;
+    }
+
+    public function getFacetAttributes($ae_object) {
+        $filters = array();
+        $appliedFilters = Mage::getSingleton('catalog/layer')->getState()->getFilters();
+        foreach ($appliedFilters as $filter) {
+            // price filter does not have attribute ID, it generated from price range of products
+            if ($filter->getFilter()->getRequestVar() == 'price') continue;
+            $filters[] = array($filter->getValue());
+        }
+        if (!empty($filters))
+            $ae_object->facetAttributes = $filters;
+        return $ae_object;
     }
 
     public function loadProductsById($ids) {

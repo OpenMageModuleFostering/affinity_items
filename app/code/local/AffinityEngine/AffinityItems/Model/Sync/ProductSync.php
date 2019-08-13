@@ -149,11 +149,13 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
     }
 
     public function isRecomendable($prod) {
-        $reco = false;
+        $reco = "false";
         $stock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($prod);
-        // status must be enabled, visibility anything but NOT visible, product must be in stock, and must be assined to any category
-        if ($prod->getStatus() == 1 && $prod->getVisibility() != 1 && $stock->getIsInStock() != 0 && count($prod->getCategoryIds()) != 0)
-            $reco = true;
+        $stockAndQty = ($stock->getIsInStock() != 0 && $stock->getQty() != 0) ? true : false;
+        // status must be enabled, visibility anything but NOT visible, product must be in stock with QTY more then 0, and must be assined to any category
+        if ($prod->getStatus() == 1 && $prod->getVisibility() != 1 && $stockAndQty && count($prod->getCategoryIds()) != 0)
+            $reco = "true";
+        $this->logger->log('[DEBUG]', 'Recomendable: ' . $reco); 
         return $reco;
     }
 
@@ -263,7 +265,7 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
 
         // get all attributes of a product
         foreach ($attributes as $attribute) {
-            if ($attribute->getIsVisibleOnFront()) {
+            if ($attribute->getIsFilterable()) {
 
                 $attributeCode = $attribute->getAttributeCode();
                 $label = $attribute->getFrontend()->getLabel($p);
