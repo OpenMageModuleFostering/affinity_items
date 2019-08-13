@@ -24,23 +24,31 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
+                        <heading>
+                            <label><![CDATA[<strong>Please select website!</strong>]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading>
                         <enable translate="label">
                             <label>Activation</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </enable>
                         <dev_prod translate="label">
                             <label>Enviroment</label>
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_enviroment</source_model>  
                             <sort_order>3</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <comment><![CDATA[You will be logged out from affinity server on change]]></comment>
                         </dev_prod>                       
                         <version translate="label">
@@ -48,8 +56,8 @@
                             <frontend_type>text</frontend_type>
                             <frontend_model>affinityitems/renderer_config_version</frontend_model>
                             <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
@@ -61,26 +69,26 @@
                     <label>Advanced configuration</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>3</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <heading>
                             <label><![CDATA[<strong>To secure the access to the recommendations, please indicate the servers that are allowed to query these recommendations</strong>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </heading>
                         <server_ip>
                             <label>Server access</label>
                             <frontend_model>affinityitems/renderer_config_serverlist</frontend_model>
                             <backend_model>adminhtml/system_config_backend_serialized</backend_model>
                             <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <can_be_empty>1</can_be_empty>
                             <comment><![CDATA[IP list]]></comment>
                         </server_ip>
@@ -89,9 +97,9 @@
                             <frontend_type>select</frontend_type>                                                                     
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <comment><![CDATA[If this box is set to YES, we will delete yours personal data on our platform after the uninstall]]></comment>
                             <tooltip><![CDATA[
                                 This option allows you to avoid the resynchronization step when installing a new version of the module.]]></tooltip>
@@ -100,9 +108,9 @@
                             <label>Number of elements to be synced</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>50</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <comment><![CDATA[default value is 300]]></comment>
                             <validate>validate-number</validate>
                             <tooltip><![CDATA[
@@ -112,9 +120,9 @@
                             <label><![CDATA[<strong>Additional CSS</strong>]]></label>
                             <frontend_type>textarea</frontend_type>
                             <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </ae_css>
                     </fields>
                 </advanced>
@@ -123,8 +131,8 @@
                     <frontend_type>text</frontend_type>
                     <sort_order>4</sort_order>
                     <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <log_level translate="label">
                             <label>Log Level</label>
@@ -132,8 +140,9 @@
                             <source_model>affinityitems/source_loglevel</source_model>  
                             <sort_order>0</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[when DEBUG is selected, all log information is saved into <b>var/log/AffinityDebug.log</b><br />info: log file can grow up to 2Gb !!!]]></comment>
                         </log_level>
                     </fields>
                 </developer>
@@ -141,9 +150,9 @@
                     <label>Image size</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>5</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <comment><![CDATA[<strong>Width x Height, in pixels</strong>]]></comment>
                     <fields>
                         <default translate="label">
@@ -151,9 +160,9 @@
                             <frontend_type>text</frontend_type>
                             <frontend_model>affinityitems/renderer_config_imagesize</frontend_model>
                             <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <validate>validate-number</validate>
                         </default>
                         <large translate="label">
@@ -161,9 +170,9 @@
                             <frontend_type>text</frontend_type>
                             <frontend_model>affinityitems/renderer_config_imagesize</frontend_model>
                             <sort_order>120</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <validate>validate-number</validate>
                         </large>
                         <medium translate="label">
@@ -171,9 +180,9 @@
                             <frontend_type>text</frontend_type>
                             <frontend_model>affinityitems/renderer_config_imagesize</frontend_model>
                             <sort_order>140</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <validate>validate-number</validate>
                         </medium>
                         <small translate="label">
@@ -181,9 +190,9 @@
                             <frontend_type>text</frontend_type>
                             <frontend_model>affinityitems/renderer_config_imagesize</frontend_model>
                             <sort_order>160</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <validate>validate-number</validate>
                         </small>
                     </fields>
@@ -193,26 +202,26 @@
                     <label>Home page</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <enable translate="label">
                             <label>Enable</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </enable>
                         <recommendation_label translate="label">
                             <label>Recommendation area label</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -222,9 +231,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_recoconfig::home</source_model>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -233,9 +242,9 @@
                             <label>Number of displayed products</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -244,9 +253,9 @@
                             <label>Number of displayed products per line</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -256,9 +265,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_imagesize</source_model>   
                             <sort_order>15</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -267,9 +276,9 @@
                             <label><![CDATA[<strong>Display settings</strong>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -279,9 +288,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>65</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -290,9 +299,9 @@
                             <label><![CDATA[&nbsp;&nbsp;Title <strong>class</strong>]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>70</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -302,9 +311,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>75</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -314,9 +323,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>80</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -326,9 +335,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>85</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -337,9 +346,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product image class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -348,9 +357,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product name class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>95</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -359,9 +368,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product description class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -370,9 +379,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price container class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>105</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -381,9 +390,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -395,26 +404,26 @@
                     <label>Left column</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>20</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <enable translate="label">
                             <label>Enable</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </enable>
                         <recommendation_label translate="label">
                             <label>Recommendation area label</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -424,9 +433,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_recoconfig::left</source_model>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -435,9 +444,9 @@
                             <label>Number of displayed products</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -446,9 +455,9 @@
                             <label>Number of displayed products per line</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -458,9 +467,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_imagesize</source_model>   
                             <sort_order>15</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -469,9 +478,9 @@
                             <label><![CDATA[<strong>Display settings</strong>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -481,9 +490,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>65</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -492,9 +501,9 @@
                             <label><![CDATA[&nbsp;&nbsp;Title <strong>class</strong>]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>70</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -504,9 +513,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>75</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -516,9 +525,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>80</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -528,9 +537,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>85</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -539,9 +548,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product image class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -550,9 +559,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product name class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>95</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -561,9 +570,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product description class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -572,9 +581,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price container class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>105</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -583,9 +592,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -597,26 +606,26 @@
                     <label>Right column</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>30</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <enable translate="label">
                             <label>Enable</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </enable>
                         <recommendation_label translate="label">
                             <label>Recommendation area label</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -626,9 +635,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_recoconfig::right</source_model>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -637,9 +646,9 @@
                             <label>Number of displayed products</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -648,9 +657,9 @@
                             <label>Number of displayed products per line</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -660,9 +669,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_imagesize</source_model>   
                             <sort_order>15</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -671,9 +680,9 @@
                             <label><![CDATA[<strong>Display settings</strong>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -683,9 +692,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>65</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -694,9 +703,9 @@
                             <label><![CDATA[&nbsp;&nbsp;Title <strong>class</strong>]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>70</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -706,9 +715,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>75</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -718,9 +727,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>80</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -730,9 +739,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>85</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -741,9 +750,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product image class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -752,9 +761,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product name class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>95</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -763,9 +772,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product description class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -774,9 +783,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price container class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>105</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -785,9 +794,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -799,26 +808,26 @@
                     <label>Cart page</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>40</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <enable translate="label">
                             <label>Enable</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </enable>
                         <recommendation_label translate="label">
                             <label>Recommendation area label</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -828,9 +837,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_recoconfig::cart</source_model>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -839,9 +848,9 @@
                             <label>Number of displayed products</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -850,9 +859,9 @@
                             <label>Number of displayed products per line</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -862,9 +871,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_imagesize</source_model>   
                             <sort_order>15</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -873,9 +882,9 @@
                             <label><![CDATA[<strong>Display settings</strong>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -885,9 +894,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>65</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -896,9 +905,9 @@
                             <label><![CDATA[&nbsp;&nbsp;Title <strong>class</strong>]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>70</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -908,9 +917,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>75</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -920,9 +929,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>80</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -932,9 +941,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>85</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -943,9 +952,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product image class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -954,9 +963,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product name class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>95</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -965,9 +974,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product description class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -976,9 +985,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price container class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>105</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -987,9 +996,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1001,26 +1010,26 @@
                     <label>Product page</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>50</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <enable translate="label">
                             <label>Enable</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </enable>
                         <recommendation_label translate="label">
                             <label>Recommendation area label</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1030,9 +1039,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_recoconfig::product</source_model>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1041,9 +1050,9 @@
                             <label>Number of displayed products</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1052,9 +1061,9 @@
                             <label>Number of displayed products per line</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1064,9 +1073,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_imagesize</source_model>   
                             <sort_order>15</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1075,9 +1084,9 @@
                             <label><![CDATA[<strong>Display settings</strong>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1087,9 +1096,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>65</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1098,9 +1107,9 @@
                             <label><![CDATA[&nbsp;&nbsp;Title <strong>class</strong>]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>70</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1110,9 +1119,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>75</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1122,9 +1131,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>80</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1134,9 +1143,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>85</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1145,9 +1154,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product image class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1156,9 +1165,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product name class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>95</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1167,9 +1176,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product description class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1178,9 +1187,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price container class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>105</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1189,9 +1198,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1203,26 +1212,26 @@
                     <label>Search page</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>60</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <enable translate="label">
                             <label>Enable</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </enable>
                         <recommendation_label translate="label">
                             <label>Recommendation area label</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1232,9 +1241,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_recoconfig::search</source_model>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1243,9 +1252,9 @@
                             <label>Number of displayed products</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1254,9 +1263,9 @@
                             <label>Number of displayed products per line</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1266,9 +1275,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_imagesize</source_model>   
                             <sort_order>15</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1277,9 +1286,9 @@
                             <label><![CDATA[<strong>Display settings</strong>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1289,9 +1298,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>65</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1300,9 +1309,9 @@
                             <label><![CDATA[&nbsp;&nbsp;Title <strong>class</strong>]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>70</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1312,9 +1321,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>75</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1324,9 +1333,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>80</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1336,9 +1345,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>85</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1347,9 +1356,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product image class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1358,9 +1367,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product name class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>95</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1369,9 +1378,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product description class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1380,9 +1389,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price container class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>105</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1391,9 +1400,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1405,26 +1414,26 @@
                     <label>Category page</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>70</sort_order>
-                    <show_in_default>1</show_in_default>
+                    <show_in_default>0</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
+                    <show_in_store>0</show_in_store>
                     <fields>
                         <enable translate="label">
                             <label>Enable</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                         </enable>
                         <recommendation_label translate="label">
                             <label>Recommendation area label</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1434,9 +1443,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_recoconfig::category</source_model>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1445,9 +1454,9 @@
                             <label>Number of displayed products</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1456,9 +1465,9 @@
                             <label>Number of displayed products per line</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1468,9 +1477,9 @@
                             <frontend_type>select</frontend_type>
                             <source_model>affinityitems/source_imagesize</source_model>   
                             <sort_order>15</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1479,9 +1488,9 @@
                             <label><![CDATA[<strong>Display settings</strong>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1491,9 +1500,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>65</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1502,9 +1511,9 @@
                             <label><![CDATA[&nbsp;&nbsp;Title <strong>class</strong>]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>70</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1514,9 +1523,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>75</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1526,9 +1535,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>80</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1538,9 +1547,9 @@
                             <frontend_type>text</frontend_type>  
                             <frontend_model>affinityitems/renderer_config_classes</frontend_model>
                             <sort_order>85</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1549,9 +1558,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product image class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1560,9 +1569,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product name class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>95</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1571,9 +1580,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product description class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1582,9 +1591,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price container class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>105</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>
@@ -1593,9 +1602,9 @@
                             <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price class]]></label>
                             <frontend_type>text</frontend_type>
                             <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
+                            <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_store>0</show_in_store>
                             <depends>
                                 <enable>1</enable>
                             </depends>

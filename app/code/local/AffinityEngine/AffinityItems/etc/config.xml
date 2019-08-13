@@ -2,7 +2,7 @@
 <config>
     <modules>
         <AffinityEngine_AffinityItems>
-            <version>1.1.3</version>
+            <version>1.1.4</version>
         </AffinityEngine_AffinityItems>
     </modules>
     
@@ -62,14 +62,15 @@
                     </affinityEngine_saveproduct>
                 </observers>
             </catalog_product_save_after>
-            <catalog_category_save_before>
-                <observers>
-                    <affinityEngine_savecategory>
-                        <class>AffinityEngine_AffinityItems_Model_Observer</class>
-                        <method>saveCategory</method>
-                    </affinityEngine_savecategory>
-                </observers>
-            </catalog_category_save_before>
+            <catalog_category_save_commit_after>
+            <observers>
+                <affinityEngine_savecategory>
+                    <type>singleton</type>
+                    <class>AffinityEngine_AffinityItems_Model_Observer</class>
+                    <method>saveCategory</method>
+                </affinityEngine_savecategory>
+            </observers>
+        </catalog_category_save_commit_after>
             <sales_order_save_before>
                 <observers>
                     <affinityEngine_saveorder>
@@ -221,7 +222,7 @@
                                 </affinityitems_log>
                                 <affinityitems_config translate="title" module="affinityitems">
                                     <title>Configuration</title>
-                                    <sort_order>10</sort_order>
+                                                                        <sort_order>10</sort_order>
                                 </affinityitems_config>
                             </children>
                         </affinityengine>
@@ -267,136 +268,141 @@
     
     <default>
         <affinityitems>
-            <items_home>
-                <number_products>4</number_products>
-                <number_products_per_line>4</number_products_per_line>
-                <recommendation_config>personalization</recommendation_config>
-                <image_size>0</image_size>
-                <parent_div>,ae_products_block_center clearfix</parent_div>
-                <title_class>ae_block_title_center</title_class>
-                <content_div>,ae_content_block_center</content_div>
-                <ul>,ae_list_products_block_center</ul>
-                <li>,ae_product_block_center</li>
-                <product_image_class>ae_img_center</product_image_class>
-                <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_description</product_dsecription_class>
-                <price_container_class>ae_price_container_center</price_container_class>
-                <price_class>ae_price_center</price_class>
-            </items_home>
-            <items_left>
-                <number_products>4</number_products>
-                <number_products_per_line>4</number_products_per_line>
-                <image_size>0</image_size>
-                <parent_div>,ae_products_block_center clearfix</parent_div>
-                <title_class>ae_block_title_center</title_class>
-                <content_div>,ae_content_block_center</content_div>
-                <ul>,ae_list_products_block_center</ul>
-                <li>,ae_product_block_center</li>
-                <product_image_class>ae_img_center</product_image_class>
-                <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_description</product_dsecription_class>
-                <price_container_class>ae_price_container_center</price_container_class>
-                <price_class>ae_price_center</price_class>
-            </items_left>
-            <items_right>
-                <number_products>4</number_products>
-                <number_products_per_line>4</number_products_per_line>
-                <recommendation_config>personalization</recommendation_config>
-                <image_size>0</image_size>
-                <parent_div>,ae_products_block_center clearfix</parent_div>
-                <title_class>ae_block_title_center</title_class>
-                <content_div>,ae_content_block_center</content_div>
-                <ul>,ae_list_products_block_center</ul>
-                <li>,ae_product_block_center</li>
-                <product_image_class>ae_img_center</product_image_class>
-                <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_description</product_dsecription_class>
-                <price_container_class>ae_price_container_center</price_container_class>
-                <price_class>ae_price_center</price_class>
-            </items_right>
-            <items_cart>
-                <number_products>4</number_products>
-                <number_products_per_line>4</number_products_per_line>
-                <recommendation_config>personalization</recommendation_config>
-                <image_size>0</image_size>
-                <parent_div>,ae_products_block_center clearfix</parent_div>
-                <title_class>ae_block_title_center</title_class>
-                <content_div>,ae_content_block_center</content_div>
-                <ul>,ae_list_products_block_center</ul>
-                <li>,ae_product_block_center</li>
-                <product_image_class>ae_img_center</product_image_class>
-                <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_description</product_dsecription_class>
-                <price_container_class>ae_price_container_center</price_container_class>
-                <price_class>ae_price_center</price_class>
-            </items_cart>
-            <items_product>
-                <number_products>4</number_products>
-                <number_products_per_line>4</number_products_per_line>
-                <recommendation_config>personalization</recommendation_config>
-                <image_size>0</image_size>
-                <parent_div>,ae_products_block_center clearfix</parent_div>
-                <title_class>ae_block_title_center</title_class>
-                <content_div>,ae_content_block_center</content_div>
-                <ul>,ae_list_products_block_center</ul>
-                <li>,ae_product_block_center</li>
-                <product_image_class>ae_img_center</product_image_class>
-                <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_description</product_dsecription_class>
-                <price_container_class>ae_price_container_center</price_container_class>
-                <price_class>ae_price_center</price_class>
-            </items_product>
-            <items_search>
-                <number_products>4</number_products>
-                <number_products_per_line>4</number_products_per_line>
-                <recommendation_config>personalization</recommendation_config>
-                <image_size>0</image_size>
-                <parent_div>,ae_products_block_center clearfix</parent_div>
-                <title_class>ae_block_title_center</title_class>
-                <content_div>,ae_content_block_center</content_div>
-                <ul>,ae_list_products_block_center</ul>
-                <li>,ae_product_block_center</li>
-                <product_image_class>ae_img_center</product_image_class>
-                <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_description</product_dsecription_class>
-                <price_container_class>ae_price_container_center</price_container_class>
-                <price_class>ae_price_center</price_class>
-            </items_search>
-            <items_category>
-                <number_products>4</number_products>
-                <number_products_per_line>4</number_products_per_line>
-                <recommendation_config>personalization</recommendation_config>
-                <image_size>0</image_size>
-                <parent_div>,ae_products_block_center clearfix</parent_div>
-                <title_class>ae_block_title_center</title_class>
-                <content_div>,ae_content_block_center</content_div>
-                <ul>,ae_list_products_block_center</ul>
-                <li>,ae_product_block_center</li>
-                <product_image_class>ae_img_center</product_image_class>
-                <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_description</product_dsecription_class>
-                <price_container_class>ae_price_container_center</price_container_class>
-                <price_class>ae_price_center</price_class>
-            </items_category>
-            <image_size>
-                <default>125,125</default>
-                <large>458,458</large>
-                <medium>250,250</medium>
-                <small>98,98</small>
-            </image_size>
-        </affinityitems>
-    </default>
+        <general>
+            <storeid>
+                0
+            </storeid>
+        </general>
+         <items_home>
+            <number_products>4</number_products>
+            <number_products_per_line>4</number_products_per_line>
+            <recommendation_config>personalization</recommendation_config>
+            <image_size>0</image_size>
+            <parent_div>,ae_products_block_center clearfix</parent_div>
+            <title_class>ae_block_title_center</title_class>
+            <content_div>,ae_content_block_center</content_div>
+            <ul>,ae_list_products_block_center</ul>
+            <li>,ae_product_block_center</li>
+            <product_image_class>ae_img_center</product_image_class>
+            <product_name_class>ae_products_name_center</product_name_class>
+            <product_dsecription_class>ae_product_description</product_dsecription_class>
+            <price_container_class>ae_price_container_center</price_container_class>
+            <price_class>ae_price_center</price_class>
+        </items_home>
+        <items_left>
+            <number_products>4</number_products>
+            <number_products_per_line>4</number_products_per_line>
+            <image_size>0</image_size>
+            <parent_div>,ae_products_block_center clearfix</parent_div>
+            <title_class>ae_block_title_center</title_class>
+            <content_div>,ae_content_block_center</content_div>
+            <ul>,ae_list_products_block_center</ul>
+            <li>,ae_product_block_center</li>
+            <product_image_class>ae_img_center</product_image_class>
+            <product_name_class>ae_products_name_center</product_name_class>
+            <product_dsecription_class>ae_product_description</product_dsecription_class>
+            <price_container_class>ae_price_container_center</price_container_class>
+            <price_class>ae_price_center</price_class>
+        </items_left>
+        <items_right>
+            <number_products>4</number_products>
+            <number_products_per_line>4</number_products_per_line>
+            <recommendation_config>personalization</recommendation_config>
+            <image_size>0</image_size>
+            <parent_div>,ae_products_block_center clearfix</parent_div>
+            <title_class>ae_block_title_center</title_class>
+            <content_div>,ae_content_block_center</content_div>
+            <ul>,ae_list_products_block_center</ul>
+            <li>,ae_product_block_center</li>
+            <product_image_class>ae_img_center</product_image_class>
+            <product_name_class>ae_products_name_center</product_name_class>
+            <product_dsecription_class>ae_product_description</product_dsecription_class>
+            <price_container_class>ae_price_container_center</price_container_class>
+            <price_class>ae_price_center</price_class>
+        </items_right>
+        <items_cart>
+            <number_products>4</number_products>
+            <number_products_per_line>4</number_products_per_line>
+            <recommendation_config>personalization</recommendation_config>
+            <image_size>0</image_size>
+            <parent_div>,ae_products_block_center clearfix</parent_div>
+            <title_class>ae_block_title_center</title_class>
+            <content_div>,ae_content_block_center</content_div>
+            <ul>,ae_list_products_block_center</ul>
+            <li>,ae_product_block_center</li>
+            <product_image_class>ae_img_center</product_image_class>
+            <product_name_class>ae_products_name_center</product_name_class>
+            <product_dsecription_class>ae_product_description</product_dsecription_class>
+            <price_container_class>ae_price_container_center</price_container_class>
+            <price_class>ae_price_center</price_class>
+        </items_cart>
+        <items_product>
+            <number_products>4</number_products>
+            <number_products_per_line>4</number_products_per_line>
+            <recommendation_config>personalization</recommendation_config>
+            <image_size>0</image_size>
+            <parent_div>,ae_products_block_center clearfix</parent_div>
+            <title_class>ae_block_title_center</title_class>
+            <content_div>,ae_content_block_center</content_div>
+            <ul>,ae_list_products_block_center</ul>
+            <li>,ae_product_block_center</li>
+            <product_image_class>ae_img_center</product_image_class>
+            <product_name_class>ae_products_name_center</product_name_class>
+            <product_dsecription_class>ae_product_description</product_dsecription_class>
+            <price_container_class>ae_price_container_center</price_container_class>
+            <price_class>ae_price_center</price_class>
+        </items_product>
+        <items_search>
+            <number_products>4</number_products>
+            <number_products_per_line>4</number_products_per_line>
+            <recommendation_config>personalization</recommendation_config>
+            <image_size>0</image_size>
+            <parent_div>,ae_products_block_center clearfix</parent_div>
+            <title_class>ae_block_title_center</title_class>
+            <content_div>,ae_content_block_center</content_div>
+            <ul>,ae_list_products_block_center</ul>
+            <li>,ae_product_block_center</li>
+            <product_image_class>ae_img_center</product_image_class>
+            <product_name_class>ae_products_name_center</product_name_class>
+            <product_dsecription_class>ae_product_description</product_dsecription_class>
+            <price_container_class>ae_price_container_center</price_container_class>
+            <price_class>ae_price_center</price_class>
+        </items_search>
+        <items_category>
+            <number_products>4</number_products>
+            <number_products_per_line>4</number_products_per_line>
+            <recommendation_config>personalization</recommendation_config>
+            <image_size>0</image_size>
+            <parent_div>,ae_products_block_center clearfix</parent_div>
+            <title_class>ae_block_title_center</title_class>
+            <content_div>,ae_content_block_center</content_div>
+            <ul>,ae_list_products_block_center</ul>
+            <li>,ae_product_block_center</li>
+            <product_image_class>ae_img_center</product_image_class>
+            <product_name_class>ae_products_name_center</product_name_class>
+            <product_dsecription_class>ae_product_description</product_dsecription_class>
+            <price_container_class>ae_price_container_center</price_container_class>
+            <price_class>ae_price_center</price_class>
+        </items_category>
+        <image_size>
+            <default>125,125</default>
+            <large>458,458</large>
+            <medium>250,250</medium>
+            <small>98,98</small>
+        </image_size>
+    </affinityitems>
+</default>
 
-    <crontab>
-        <jobs>            
-            <affinityitems_sync>
-                <schedule>
-                    <cron_expr>*/5 * * * *</cron_expr>
-                </schedule>
-                <run>
-                    <model>affinityitems/cron::Sync</model>
-                </run>
-            </affinityitems_sync>
-        </jobs>
-    </crontab>
+<crontab>
+    <jobs>            
+        <affinityitems_sync>
+            <schedule>
+                <cron_expr>*/5 * * * *</cron_expr>
+            </schedule>
+            <run>
+                <model>affinityitems/cron::Sync</model>
+            </run>
+        </affinityitems_sync>
+    </jobs>
+</crontab>
 </config>

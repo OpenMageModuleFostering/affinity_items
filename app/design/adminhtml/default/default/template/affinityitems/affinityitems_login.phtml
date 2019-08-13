@@ -41,7 +41,8 @@ jQuery(document).ready(function () {
 					email: jQuery("#remail").val(),
 					password: jQuery("#rpassword").val(),
 					discountCode: jQuery("#rdiscount").val(),
-					form_key: jQuery("#rform_key").val()
+					form_key: jQuery("#rform_key").val(),
+					website_id: jQuery("#website_id").val()
 				},
 				success: function (e, t, n) {
 					var response = e;
@@ -72,6 +73,27 @@ return false;
 </script>
 
 <div class="items-wrapper">
+    
+    <?php $websites = Mage::app()->getWebsites(); ?>    
+    <p class="switcher"><label for="store_switcher"><?php echo $this->__('Choose website:') ?></label>
+    <?php echo $this->getHintHtml() ?>
+    <select name="store_switcher" id="store_switcher" class="left-col-block" onchange="return switchStore(this);">
+        <option value=""><?php echo $this->__('Please select website') ?></option>
+        <?php // foreach ($this->getWebsiteCollection() as $_website): ?>
+        <?php foreach ($websites as $_website): ?>
+                <option website="true" 
+                        rel="<?php echo Mage::helper("adminhtml")->getUrl("affinityitems/adminhtml_affinityitemsbackend/index/",array("website_id" => $_website->getId())); ?>"
+                        value="<?php echo $_website->getId() ?>"
+                        <?php if($this->getRequest()->getParam('website_id') == $_website->getId()): ?> 
+                        selected="selected"<?php endif; ?>
+                ><?php echo $_website->getName() ?></option>
+        <?php endforeach; ?>
+    </select>
+    </p>
+    
+    <?php 
+    if ( $this->getRequest()->getParam('website_id') ): ?>
+    
 	<div class="items-header">
 		<div class="aelogo"></div>
 	</div>
@@ -95,6 +117,7 @@ return false;
 						</p>
 						<input id="aeregister" style="margin-top: 67px;" class="items-button items-green" type="submit" value="<?php echo Mage::helper('affinityitems')->__('Install AffinityItems');?>">
 						<input name="form_key" id="rform_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+						<input name="website_id" id="website_id" type="hidden" value="<?php echo $this->getRequest()->getParam('website_id') ?>" />
 					</form>
 				</div>
 			</div>
@@ -114,4 +137,14 @@ return false;
 			<div class="clear"></div>
 		</div>
 	</div>
+        <?php endif; ?>
 </div>
+
+<script type="text/javascript">
+//<![CDATA[
+    function switchStore(obj){
+        var redirecrUrl = obj.options[obj.selectedIndex].getAttribute('rel');
+        setLocation(redirecrUrl);
+    }
+//]]>
+</script>

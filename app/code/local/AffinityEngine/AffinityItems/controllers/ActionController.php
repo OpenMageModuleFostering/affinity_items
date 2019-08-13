@@ -8,7 +8,7 @@ class AffinityEngine_AffinityItems_ActionController extends Mage_Core_Controller
     }
 
     public function ajaxAction() {
-        if (Mage::helper('affinityitems')->isModuleEnabledAndRegistered()) {
+        if (Mage::helper('affinityitems')->isModuleEnabledAndRegistered(Mage::app()->getWebsite()->getId())) {
             $rec_type = $this->getRequest()->getPost('recoType');
             $rec_type = isset($rec_type) ? $rec_type : '';
             

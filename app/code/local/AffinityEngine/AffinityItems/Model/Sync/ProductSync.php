@@ -24,10 +24,8 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
 
             $aeproductList = array();
             foreach ($products as $prod) {
-                $prod = Mage::getModel('catalog/product')->setStoreId(0)->load($prod->getId());
+                $prod = Mage::getModel('catalog/product')->load($prod->getId());
                 $aeproduct = new stdClass();
-
-
                 $aeproduct->productId = $prod->getId();
                 $aeproduct->updateDate = $prod->getUpdatedAt();
                 $aeproduct->categoryIds = $prod->getCategoryIds();
@@ -51,7 +49,7 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
             if ($response) {
                 Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID); //fix for SQL error when saving product
                 foreach ($aeproductList as $product) {
-                    $prod = Mage::getModel('catalog/product')->setStoreId(0)->load($product->productId);
+                    $prod = Mage::getModel('catalog/product')->setStoreId($this->getStoreIdByWebsiteId())->load($product->productId);
                     try {
                         $prod->setData('ae_sync', 1)->setData('observer', true)->setData('ae_sync_date', date("Y-m-d H:i:s"))->save();
                         $this->logger->log('[INFO]', 'Synchronize product: ' . $prod->getName() . ' (ID:' . $prod->getId() . ') [' . time() . ']');
@@ -110,7 +108,7 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
     public function syncProductFromObserver($prod = false) {
         if (!$prod)
             return false;
-        $prod = Mage::getModel('catalog/product')->setStoreId(0)->load($prod);
+        $prod = Mage::getModel('catalog/product')->setStoreId($this->getStoreIdByWebsiteId())->load($prod);
         if ($prod->getVisibility() == 1 && $prod->getTypeId() == 'simple')
             return false;
         $is_new = (bool) $prod->getAeSyncDate();
@@ -129,7 +127,7 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
             $response = $request->put();
         }
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID); //fix for SQL error when saving product
-        $prod = Mage::getModel('catalog/product')->setStoreId(0)->load($aeproduct->productId);
+        $prod = Mage::getModel('catalog/product')->load($aeproduct->productId);
         if ($response) {
             try {
                 $prod->setData('ae_sync', 1)->setData('observer', true)->setData('ae_sync_date', date("Y-m-d H:i:s"))->save();
@@ -186,7 +184,7 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
         $urls = array();
         
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
-        $p = Mage::getModel('catalog/product')->setStoreId(0)->load($prod->getId());
+        $p = Mage::getModel('catalog/product')->load($prod->getId());
 
         $resolution = new stdClass();
         $resolution->name = 'large';

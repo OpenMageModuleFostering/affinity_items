@@ -6,11 +6,14 @@ class AffinityEngine_AffinityItems_Model_Observer {
         $this->logger = Mage::getModel('affinityitems/log');
         $this->cookie = Mage::getModel('core/cookie');
         $this->helper = Mage::helper('affinityitems');
+        $this->aehelper = Mage::helper('affinityitems/aeadapter');
         $this->aegroups = array("A", "B");
     }
 
     public function addToCart($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        $website_id = Mage::app()->getWebsite()->getId();
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if ($this->cookie->get('aeguest') && in_array($this->cookie->get('aegroup'), $this->aegroups)) {
                 $cart_repo_model = Mage::getModel("affinityitems/cart");
                 $options = $observer->getProduct()->getTypeInstance(true)->getOrderOptions($observer->getProduct());
@@ -37,7 +40,7 @@ class AffinityEngine_AffinityItems_Model_Observer {
 
                 if (!Mage::getModel('affinityitems/sync_cartActionSync')->syncCartFromObserver($action)) {
                     $cart_repo_model->cartrepo(
-                            $action->getIdCart(), $action->getIdProduct(), $action->getQuantity(), $action->getAction(), $attribute_ids, $action->getAeguestid(), $action->getAegroup(), $action->getIp(), $action->getAememberid(), $action->getLanguage());
+                            $action->getIdCart(), $action->getIdProduct(), $action->getQuantity(), $action->getAction(), $attribute_ids, $action->getAeguestid(), $action->getAegroup(), $action->getIp(), $action->getAememberid(), $action->getLanguage(), $this->aehelper->getWebsiteId());
                 }
 
 
@@ -55,7 +58,9 @@ class AffinityEngine_AffinityItems_Model_Observer {
     }
 
     public function updateCart($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        $website_id = Mage::app()->getWebsite()->getId();
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if ($aeguestId = $this->cookie->get('aeguest') && in_array($this->cookie->get('aegroup'), $this->aegroups)) {
                 $cart = Mage::getModel('checkout/cart')->getQuote();
                 $cart_repo_model = Mage::getModel("affinityitems/cart");
@@ -89,7 +94,7 @@ class AffinityEngine_AffinityItems_Model_Observer {
 
                                 if (!Mage::getModel('affinityitems/sync_cartActionSync')->syncCartFromObserver($action)) {
                                     $cart_repo_model->cartrepo(
-                                            $action->getIdCart(), $action->getIdProduct(), $action->getQuantity(), $action->getAction(), $attribute_ids, $action->getAeguestid(), $action->getAegroup(), $action->getIp(), $action->getAememberid(), $action->getLanguage());
+                                            $action->getIdCart(), $action->getIdProduct(), $action->getQuantity(), $action->getAction(), $attribute_ids, $action->getAeguestid(), $action->getAegroup(), $action->getIp(), $action->getAememberid(), $action->getLanguage(), $this->aehelper->getWebsiteId());
                                 }
                             }
                         }
@@ -110,7 +115,9 @@ class AffinityEngine_AffinityItems_Model_Observer {
     }
 
     public function updateProductCart($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        $website_id = Mage::app()->getWebsite()->getId();
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if ($aeguestId = $this->cookie->get('aeguest') && in_array($this->cookie->get('aegroup'), $this->aegroups)) {
                 $cart_repo_model = Mage::getModel("affinityitems/cart");
 
@@ -142,7 +149,7 @@ class AffinityEngine_AffinityItems_Model_Observer {
 
                             if (!Mage::getModel('affinityitems/sync_cartActionSync')->syncCartFromObserver($action)) {
                                 $cart_repo_model->cartrepo(
-                                        $action->getIdCart(), $action->getIdProduct(), $action->getQuantity(), $action->getAction(), $attribute_ids, $action->getAeguestid(), $action->getAegroup(), $action->getIp(), $action->getAememberid(), $action->getLanguage());
+                                        $action->getIdCart(), $action->getIdProduct(), $action->getQuantity(), $action->getAction(), $attribute_ids, $action->getAeguestid(), $action->getAegroup(), $action->getIp(), $action->getAememberid(), $action->getLanguage(), $this->aehelper->getWebsiteId());
                             }
                             break;
                         }
@@ -163,7 +170,9 @@ class AffinityEngine_AffinityItems_Model_Observer {
     }
 
     public function removeFromCart($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        $website_id = Mage::app()->getWebsite()->getId();
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if ($aeguestId = $this->cookie->get('aeguest') && in_array($this->cookie->get('aegroup'), $this->aegroups)) {
                 $options = $observer->getQuoteItem()->getProduct()->getTypeInstance(true)->getOrderOptions($observer->getQuoteItem()->getProduct());
                 $attribute_ids = array();
@@ -198,32 +207,47 @@ class AffinityEngine_AffinityItems_Model_Observer {
 
                 if (!Mage::getModel('affinityitems/sync_cartActionSync')->syncCartFromObserver($action)) {
                     $cart_repo_model->cartrepo(
-                            $action->getIdCart(), $action->getIdProduct(), $action->getQuantity(), $action->getAction(), $attribute_ids, $action->getAeguestid(), $action->getAegroup(), $action->getIp(), $action->getAememberid(), $action->getLanguage());
+                            $action->getIdCart(), $action->getIdProduct(), $action->getQuantity(), $action->getAction(), $attribute_ids, $action->getAeguestid(), $action->getAegroup(), $action->getIp(), $action->getAememberid(), $action->getLanguage(), $this->aehelper->getWebsiteId());
                 }
             }
         }
     }
 
     public function saveProduct($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
-            if (!$observer->getData('data_object')->getData('observer')) {
-                if (!Mage::getModel('affinityitems/sync_productSync')->syncProductFromObserver($observer->getData('data_object')->getData('entity_id')))
-                    $observer->getData('data_object')->setData('ae_sync', 0);
+        foreach ($observer->getData('data_object')->getData('website_ids') as $website_id) {
+            $this->aehelper->registerWebsiteId($website_id);
+
+            if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
+                if (!$observer->getData('data_object')->getData('observer')) {
+                    if (!Mage::getModel('affinityitems/sync_productSync')->syncProductFromObserver($observer->getData('data_object')->getData('entity_id')))
+                        $observer->getData('data_object')->setData('ae_sync', 0);
+                }
             }
         }
     }
 
     public function saveCategory($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        // trying to find website id by Root Id of category
+        $rootId = explode('/', $observer->getData('data_object')->getData('path'));
+        if (isset($rootId[1])) {
+            $website_id = $this->aehelper->getWebsiteIdByRootCategoryId($rootId[1]);
+        } else {
+            return;
+        }
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if (!$observer->getData('data_object')->getData('observer')) {
                 if (!Mage::getModel('affinityitems/sync_categorySync')->syncCategoryFromObserver($observer->getData('data_object')->getData('entity_id')))
                     $observer->getData('data_object')->setData('ae_sync', 0);
             }
         }
     }
-
+    
     public function saveOrder($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        $website_id = Mage::app()->getWebsite()->getId();
+        if ($website_id == 0) return;
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if (!$observer->getData('data_object')->getData('observer')) {
                 if (!Mage::getModel('affinityitems/sync_orderSync')->syncOrderFromObserver($observer->getData('data_object')->getData('entity_id'))) {
                     $observer->getData('data_object')->setData('ae_sync', 0);
@@ -237,7 +261,9 @@ class AffinityEngine_AffinityItems_Model_Observer {
     }
 
     public function checkCookie($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        $website_id = Mage::app()->getWebsite()->getId();
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if (!$this->helper->isAdmin()) {
                 if (!$this->cookie->get('aeguest') || $force = Mage::app()->getRequest()->getParam('aeabtesting')) {
                     $this->helper->generateGuest();
@@ -252,7 +278,9 @@ class AffinityEngine_AffinityItems_Model_Observer {
     }
 
     public function login($params) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        $website_id = Mage::app()->getWebsite()->getId();
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if (!$this->helper->isAdmin()) {
                 if ($this->cookie->get('aeguest') && $customer = Mage::getSingleton('customer/session')->isLoggedIn()) {
                     try {
@@ -274,7 +302,9 @@ class AffinityEngine_AffinityItems_Model_Observer {
     }
 
     public function updateHosts(Varien_Event_Observer $observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
+        $website_id = Mage::app()->getWebsite()->getId();
+        $this->aehelper->registerWebsiteId($website_id);
+        if ($this->helper->isModuleEnabledAndRegistered($website_id)) {
             if ($this->detectEnviromentChange())
                 return false;
             $ips = unserialize(Mage::getStoreConfig('affinityitems/advanced/server_ip'));
@@ -295,7 +325,9 @@ class AffinityEngine_AffinityItems_Model_Observer {
         if (Mage::getStoreConfig('affinityitems/general/dev_prod') <> Mage::getStoreConfig('affinityitems/general/dev_prod_rel')) {
             $ae_config = new Mage_Core_Model_Config();
             $ae_config->saveConfig('affinityitems/general/dev_prod_rel', Mage::getStoreConfig('affinityitems/general/dev_prod'), 'default', 0);
-            Mage::helper('affinityitems/aeadapter')->authentication('', '', '', '');
+            // No need to remove user / pass, from v1.1.5 it is saved per website
+            // Mage::helper('affinityitems/aeadapter')->authentication('', '', '', '');
+            $this->helper->deleteAllSync();
             $this->logger->log('[INFO]', 'Enviroment changed, login info removed, need to login again to AffinityEngine server');
             Mage::getSingleton('adminhtml/session')->addSuccess('Enviroment changed, login info removed, need to login again to AffinityEngine server');
             return true;
@@ -304,37 +336,53 @@ class AffinityEngine_AffinityItems_Model_Observer {
     }
 
     public function deleteCategory($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
-            $cid = $observer->getData('category')->getData('entity_id');
-            $category = new stdClass();
-            $category->categoryId = $cid;
+        $categoryId = $observer->getData('category')->getData('entity_id');
+        $category = Mage::getModel('catalog/category')->load($categoryId);
+        $categoryIds = $category->getPathIds();
 
-            $request = new AffinityEngine_AffinityItems_Model_Sdk_Request_CategoryRequest($category);
-            $response = $request->delete();
-            if ($response) {
-                $this->logger->log('[INFO]', 'Delete category:  (ID:' . $cid . ') [' . time() . ']');
-            } else {
-                $this->logger->log('[ERROR]', 'Delete category:  (ID:' . $cid . ') [' . time() . ']');
-                Mage::getModel("affinityitems/catProdRepo")->addToCatProdRepo($cid, 'category');
+        $stores = Mage::getModel('core/store')->getCollection()->loadByCategoryIds($categoryIds);
+
+        $websiteIds = array_unique($stores->getColumnValues('website_id'));
+
+        foreach ($websiteIds as $websiteId) {
+            $this->aehelper->registerWebsiteId($websiteId);
+
+            if ($this->helper->isModuleEnabledAndRegistered($websiteId)) {
+                $cid = $observer->getData('category')->getData('entity_id');
+                $category = new stdClass();
+                $category->categoryId = $cid;
+
+                $request = new AffinityEngine_AffinityItems_Model_Sdk_Request_CategoryRequest($category);
+                $response = $request->delete();
+                if ($response) {
+                    $this->logger->log('[INFO]', 'Delete category:  (ID:' . $cid . ') [' . time() . ']');
+                } else {
+                    $this->logger->log('[ERROR]', 'Delete category:  (ID:' . $cid . ') [' . time() . ']');
+                    Mage::getModel("affinityitems/catProdRepo")->addToCatProdRepo($cid, 'category', $this->aehelper->getWebsiteId());
+                }
             }
         }
     }
 
     public function deleteProduct($observer) {
-        if ($this->helper->isModuleEnabledAndRegistered()) {
-            $pid = $observer->getData('data_object')->getData('entity_id');
-            if ($observer->getData('data_object')->getData('type_id') == 'simple' && $observer->getData('data_object')->getData('visibility') == 1)
-                return;
-            $aeproduct = new stdClass();
-            $aeproduct->productId = $pid;
-            $request = new AffinityEngine_AffinityItems_Model_Sdk_Request_ProductRequest($aeproduct);
-            $response = $request->delete();
+        foreach ($observer->getData('data_object')->getWebsiteIds() as $websiteId) {
+            $this->aehelper->registerWebsiteId($websiteId);
 
-            if ($response) {
-                $this->logger->log('[INFO]', 'Delete product:  (ID:' . $pid . ') [' . time() . ']');
-            } else {
-                $this->logger->log('[ERROR]', 'Delete product:  (ID:' . $pid . ') [' . time() . ']');
-                Mage::getModel("affinityitems/catProdRepo")->addToCatProdRepo($pid, 'product');
+            if ($this->helper->isModuleEnabledAndRegistered($websiteId)) {
+                $pid = $observer->getData('data_object')->getData('entity_id');
+                if ($observer->getData('data_object')->getData('type_id') == 'simple' && $observer->getData('data_object')->getData('visibility') == 1)
+                    return;
+                $aeproduct = new stdClass();
+                $aeproduct->productId = $pid;
+                $request = new AffinityEngine_AffinityItems_Model_Sdk_Request_ProductRequest($aeproduct);
+                $response = $request->delete();
+
+                if ($response) {
+                    $this->logger->log('[INFO]', 'Delete product:  (ID:' . $pid . ') [' . time() . ']');
+                } else {
+                    $this->logger->log('[ERROR]', 'Delete product:  (ID:' . $pid . ') [' . time() . ']');
+                    Mage::getModel("affinityitems/catProdRepo")->addToCatProdRepo($pid, 'product', $this->aehelper->getWebsiteId());
+                }
             }
         }
     }

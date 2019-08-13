@@ -6,7 +6,7 @@ class AffinityEngine_AffinityItems_Model_Cart extends Mage_Core_Model_Abstract {
         $this->_init('affinityitems/cart');
     }
 
-    public function cartrepo($id_cart, $id_product, $quantity, $action, $attributes = array(), $aeguestId, $aegroup, $ip, $aememberId = '', $language = '') {
+    public function cartrepo($id_cart, $id_product, $quantity, $action, $attributes = array(), $aeguestId, $aegroup, $ip, $aememberId = '', $language = '', $websiteId = 0) {
 
         $test=$this->setData(
                 array(
@@ -20,7 +20,8 @@ class AffinityEngine_AffinityItems_Model_Cart extends Mage_Core_Model_Abstract {
                     'aememberid' => $aememberId,
                     'aegroup' => $aegroup,
                     'language' => $language,
-                    'ip' => $ip
+                    'ip' => $ip,
+                    'website_id' => $websiteId
                 )
         )->save();
     }

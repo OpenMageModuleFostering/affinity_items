@@ -42,7 +42,7 @@ class AffinityEngine_AffinityItems_Model_Sync_CategorySync extends AffinityEngin
 
             if ($response) {
                 foreach ($categoryList as $category) {
-                    $cat = Mage::getModel('catalog/category')->setStoreId(0)->load($category->categoryId);
+                    $cat = Mage::getModel('catalog/category')->load($category->categoryId);
                     try {
                         $cat->setData('ae_sync', 1)->setData('observer', true)->setData('ae_sync_date', date("Y-m-d H:i:s"))->save();
                         $this->logger->log('[INFO]', 'Synchronize category: ' . $cat->getName() . ' (ID:' . $cat->getId() . ') [' . time() . ']');
@@ -98,7 +98,7 @@ class AffinityEngine_AffinityItems_Model_Sync_CategorySync extends AffinityEngin
     public function syncCategoryFromObserver($cat_id = false) {
         if (!$cat_id)
             return false;
-        $cat = Mage::getModel('catalog/category')->setStoreId(0)->load($cat_id);
+        $cat = Mage::getModel('catalog/category')->setStoreId($this->getStoreIdByWebsiteId())->load($cat_id);
         $is_new = (bool) $cat->getAeSyncDate();
         $category = new stdClass();
         $category->categoryId = (int) $cat->getId();
@@ -114,7 +114,7 @@ class AffinityEngine_AffinityItems_Model_Sync_CategorySync extends AffinityEngin
         }
 
         if ($response) {
-            $cat = Mage::getModel('catalog/category')->setStoreId(0)->load($category->categoryId);
+            //$cat = Mage::getModel('catalog/category')->setStoreId($this->getStoreIdByWebsiteId())->load($category->categoryId);
             try {
                 $cat->setData('ae_sync', 1)->setData('observer', true)->setData('ae_sync_date', date("Y-m-d H:i:s"))->save();
                 $this->logger->log('[INFO]', 'Synchronize category: ' . $cat->getName() . ' (ID:' . $cat->getId() . ') [' . time() . ']');

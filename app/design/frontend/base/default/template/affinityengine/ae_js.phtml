@@ -14,8 +14,8 @@
 
 	<?php
 	$_helper = $this->helper('catalog/output');
-	$_category_detail = Mage::registry('current_category');	
-	if(isset($_category_detail)) { ?>
+	$_category_detail = Mage::registry('current_category');
+	if(isset($_category_detail) && Mage::helper('affinityitems')->getCurrentPage() == 'category') { ?>
 	var categoryId = '<?php echo $_category_detail->getId();?>';
 	<?php } ?>
     aejQuery(document).ready(function () {

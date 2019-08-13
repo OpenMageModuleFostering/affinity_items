@@ -3,7 +3,9 @@
 class AffinityEngine_AffinityItems_Adminhtml_AjaxController extends Mage_Adminhtml_Controller_Action {
 
     public function registerAction() {
-        if (Mage::app()->getRequest()->getParam('email') != '' && Mage::app()->getRequest()->getParam('password') != '') {
+        if (Mage::app()->getRequest()->getParam('email') != '' && Mage::app()->getRequest()->getParam('password') != '' /*&& Mage::app()->getRequest()->getParam('website_id') != ''*/) {
+            $website_id = Mage::app()->getRequest()->getParam('website_id');
+            
             $customer = new stdClass();
             $customer->siteName = $_SERVER['SERVER_NAME'];
             $customer->domain = $_SERVER['HTTP_HOST'];
@@ -36,7 +38,7 @@ class AffinityEngine_AffinityItems_Adminhtml_AjaxController extends Mage_Adminht
 
             if ($response) {
                 if ($response['_ok'] == 'true') {
-                    Mage::helper('affinityitems/aeadapter')->authentication($response['email'], 'password', $response['siteId'], $response['securityKey']);
+                    Mage::helper('affinityitems/aeadapter')->authentication($response['email'], 'password', $response['siteId'], $response['securityKey'], $website_id);
                     //addFirstHost();
                 } else {
                     $ret['_errorMessage'] = $response['_errorMessage'];

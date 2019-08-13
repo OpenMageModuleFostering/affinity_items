@@ -83,7 +83,12 @@ class AffinityEngine_AffinityItems_Model_Sdk_Core_Curl {
             var_dump($vars);
             var_dump($return); // for shell debugging only
         }
-
+        // if DEBUG logging is enabled 
+        Mage::getModel('affinityitems/log')->log("[DEBUG]", "--- Variables sent to server ---");
+        Mage::getModel('affinityitems/log')->log("[DEBUG]", $vars);
+        Mage::getModel('affinityitems/log')->log("[DEBUG]", "--- Server response ---");
+        Mage::getModel('affinityitems/log')->log("[DEBUG]", $return);
+        
         curl_close($curl);
 
         try {

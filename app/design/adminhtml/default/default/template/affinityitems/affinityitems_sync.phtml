@@ -1,5 +1,7 @@
 <?php
+$websiteId = $this->getRequest()->getParam('website_id') ? $this->getRequest()->getParam('website_id') : 0 ;
 $helper = Mage::helper('affinityitems/aeadapter');
+$helper->registerWebsiteId($websiteId);
 $request = new AffinityEngine_AffinityItems_Model_Sdk_Request_SiteRequest(array());
 $data = $request->get();
 $statistics = Mage::helper('core')->jsonDecode($data['statistics']);
@@ -7,10 +9,12 @@ $siteId = $helper->getSiteId();
 $categories = $helper->checkSync('categories');
 $products = $helper->checkSync('products');
 $cart = $helper->checkSync('cart');
+$members = $helper->checkSync('members');
 $orders = $helper->checkSync('orders');
 $actions = $helper->checkSync('actions');
 $isSynced = (bool) ($categories && $products && $cart && $orders && $actions);
 $initialsync = (count(Mage::getModel('affinityitems/syncrotate')->getCollection())) ? (bool) Mage::getModel('affinityitems/syncrotate')->getCollection()->getFirstItem()->getData('initial_sync') : true;
+
 ?>
 
 <div class="aewrapper">
@@ -26,6 +30,26 @@ $initialsync = (count(Mage::getModel('affinityitems/syncrotate')->getCollection(
 </div>
 
 <div class="items-wrapper">
+    
+    
+    <?php $websites = Mage::app()->getWebsites(); ?>    
+    <p class="switcher"><label for="store_switcher"><?php echo $this->__('Choose website:') ?></label>
+    <?php echo $this->getHintHtml() ?>
+    <select name="store_switcher" id="store_switcher" class="left-col-block" onchange="return switchStore(this);">
+        <!--<option value=""><?php echo $this->__('Please select website') ?></option>-->
+        <?php // foreach ($this->getWebsiteCollection() as $_website): ?>
+        <?php foreach ($websites as $_website): ?>
+                <option website="true" 
+                        rel="<?php echo Mage::helper("adminhtml")->getUrl("affinityitems/adminhtml_affinityitemsbackend/index/",array("website_id" => $_website->getId())); ?>"
+                        value="<?php echo $_website->getId() ?>"
+                        <?php if($websiteId == $_website->getId()): ?> 
+                        selected="selected"<?php endif; ?>
+                ><?php echo $_website->getName() ?></option>
+        <?php endforeach; ?>
+    </select>
+    </p>
+    
+    
     <div class="items-header">
         <div class="aelogo"></div>
     </div>
@@ -54,7 +78,8 @@ $initialsync = (count(Mage::getModel('affinityitems/syncrotate')->getCollection(
         <?php } ?>
 
 
-        <?php $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode(); ?>
+        <?php // $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode(); ?>
+        <?php $currency_code = Mage::getModel('core/website')->load($websiteId)->getDefaultStore()->getCurrentCurrencyCode(); ?>
 
         <div class="items-boxes">
 
@@ -116,11 +141,19 @@ $initialsync = (count(Mage::getModel('affinityitems/syncrotate')->getCollection(
     <ul>
         <li class="<?php echo ($categories) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Categories synchronization'); ?></li>
         <li class="<?php echo ($products) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Products synchronization'); ?></li>
-        <li class="<?php echo ($cart) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Carts synchronization'); ?></li>
+        <li class="<?php echo ($members) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Members synchronization'); ?></li>
         <li class="<?php echo ($orders) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Orders synchronization'); ?></li>
+        <li class="<?php echo ($cart) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Carts synchronization'); ?></li>
         <li class="<?php echo ($actions) ? 'aechecked' : 'aeunchecked'; ?>"><?php echo $this->__('Actions synchronization'); ?></li>
     </ul>
 </div>
 </div>
 
 </div>
+
+<script type="text/javascript">
+    function switchStore(obj){
+        var redirecrUrl = obj.options[obj.selectedIndex].getAttribute('rel');
+        setLocation(redirecrUrl);
+    }
+</script>

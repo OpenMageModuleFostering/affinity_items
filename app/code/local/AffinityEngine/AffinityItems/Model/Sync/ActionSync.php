@@ -37,10 +37,10 @@ class AffinityEngine_AffinityItems_Model_Sync_ActionSync extends AffinityEngine_
                 foreach ($actions as $action) {
                     try {
                         Mage::getModel('affinityitems/action')->setId($action->getId())->delete();
-                        $this->logger->log('[INFO]', 'Synchronize action : ' . $action->getAction() . '[' . time() . ']');
+                        //$this->logger->log('[INFO]', 'Synchronize action : ' . $action->getAction() . '[' . time() . ']');
                     } catch (Exception $e) {
                         $this->logger->log('[ERROR]', $e->getMessage());
-                        $this->logger->log('[ERROR]', 'Synchronize action : ' . $action->getAction() . '[' . time() . ']');
+                        //$this->logger->log('[ERROR]', 'Synchronize action : ' . $action->getAction() . '[' . time() . ']');
                     }
                 }
             } else {
@@ -79,10 +79,10 @@ class AffinityEngine_AffinityItems_Model_Sync_ActionSync extends AffinityEngine_
                     $this->logger->log('[ERROR]', $e->getMessage());
                 }
             }
-            $this->logger->log('[INFO]', 'Synchronize action: ' . $action->getAction() . '[' . time() . ']');
+            //$this->logger->log('[INFO]', 'Synchronize action: ' . $action->getAction() . '[' . time() . ']');
             return true;
         } else {
-            $this->logger->log('[ERROR]', 'Synchronize action: ' . $action->getAction() . '[' . time() . ']');
+            //$this->logger->log('[ERROR]', 'Synchronize action: ' . $action->getAction() . '[' . time() . ']');
             return false;
         }
         return false;

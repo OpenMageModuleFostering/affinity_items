@@ -115,8 +115,8 @@ aejQuery(document).ready(function() {
     var aenow = new Date().getTime();
 
     if (aejQuery('#product_page_product_id').val()) {
-        var aetimer = setInterval((function() {
-            clearInterval(aetimer);
+        var aeptimer = setInterval((function() {
+            clearInterval(aeptimer);
             postAction("read", {productId: aejQuery('#product_page_product_id').val()});
         }), 4000);
         createCookie('paetimestamp', (aenow + "." + aejQuery('#product_page_product_id').val()), 1);
@@ -131,8 +131,8 @@ aejQuery(document).ready(function() {
     }
 
     if (typeof categoryId !== 'undefined') {
-        var aetimer = setInterval((function() {
-            clearInterval(aetimer);
+        var aectimer = setInterval((function() {
+            clearInterval(aectimer);
             postAction("readCategory", {categoryId : categoryId});
         }), 4000);
         createCookie('caetimestamp', (aenow+"."+categoryId), 1);

@@ -12,7 +12,7 @@
     <?php $enable_column = false; ?>
 <?php endif; ?>
 
-<?php if ($enable_column): ?>
+<?php if ($enable_column ): ?>
     <?php $productCollection = $this->getProductCollection($blockName); ?>
     <?php if ($productCollection && count($productCollection)): ?>
         <div class="ae-area ae-<?php echo $css;?>">

@@ -70,6 +70,10 @@ $sql = "INSERT INTO `" . $this->getTable('ae_sync_rotate') . "` (`id`, `last_syn
 $installer->run($sql);
 
 // define defaults in system config
+$sql = "INSERT INTO `" . $this->getTable('core_config_data') . "` (`config_id`, `scope`, `scope_id`, `path`, `value`)
+        VALUES
+        (NULL, 'default', '0', 'affinityitems/general/storeid', '0');";
+$installer->run($sql);
 
 $xml_path = array('items_home', 'items_left', 'items_right', 'items_cart', 'items_product', 'items_search', 'items_category');
 foreach ($xml_path as $path) {
@@ -86,7 +90,7 @@ foreach ($xml_path as $path) {
         (NULL, 'default', '0', 'affinityitems/" . $path . "/li', ',ae_product_block_center'),
         (NULL, 'default', '0', 'affinityitems/" . $path . "/product_image_class', 'ae_img_center'),
         (NULL, 'default', '0', 'affinityitems/" . $path . "/product_name_class', 'ae_products_name_center'),
-        (NULL, 'default', '0', 'affinityitems/" . $path . "/product_dsecription_class', 'ae_product_description'),
+        (NULL, 'default', '0', 'affinityitems/" . $path . "/product_description_class', 'ae_product_description'),
         (NULL, 'default', '0', 'affinityitems/" . $path . "/price_container_class', 'ae_price_container_center'),
         (NULL, 'default', '0', 'affinityitems/" . $path . "/price_class', 'ae_price_center');";
     $installer->run($sql);

@@ -33,27 +33,25 @@ class AffinityEngine_AffinityItems_Helper_Data extends Mage_Core_Helper_Abstract
         $path = Mage::app()->getRequest()->getRouteName() . Mage::app()->getRequest()->getControllerName();
         switch ($path) {
             case 'cmsindex':
-            return "home";
-            break;
+                return "home";
+                break;
             case 'catalogcategory':
-            return "category";
-            break;
+                return "category";
+                break;
             case 'catalogproduct':
-            return "product";
-            break;
+                return "product";
+                break;
             case 'checkoutcart':
-            return "cart";
-            break;
+                return "cart";
+                break;
             case 'catalogsearchresult':
-            return "search";
-            break;
+                return "search";
+                break;
         }
         return 'category';
     }
 
-
-    public function getExtensionVersion()
-    {
+    public function getExtensionVersion() {
         return (string) Mage::getConfig()->getNode()->modules->AffinityEngine_AffinityItems->version;
     }
 
@@ -64,10 +62,10 @@ class AffinityEngine_AffinityItems_Helper_Data extends Mage_Core_Helper_Abstract
         return (strpos($value, ',') !== false) ? explode(",", $value) : $value;
     }
 
-    public function getGeneral($endPath = false) {
+    public function getGeneral($endPath = false, $websiteId = 0) {
         if (!$endPath)
             return;
-        $value = Mage::getStoreConfig(self::XML_PATH . 'general/' . $endPath);
+        $value = Mage::getStoreConfig(self::XML_PATH . 'general/' . $endPath, $websiteId);
         return $value;
     }
 
@@ -147,14 +145,15 @@ class AffinityEngine_AffinityItems_Helper_Data extends Mage_Core_Helper_Abstract
                 $cats = $product->getCategoryIds();
                 $query = "
                 SELECT `request_path` 
-                FROM `".Mage::getSingleton('core/resource')->getTableName('core_url_rewrite')."` 
+                FROM `" . Mage::getSingleton('core/resource')->getTableName('core_url_rewrite') . "` 
                 WHERE `product_id`='" . $product->getEntityId() . "' 
                 AND `category_id`='" . end($cats) . "' 
                 AND `store_id`='" . Mage::app()->getStore()->getId() . "';
                 ";
                 $read = Mage::getSingleton('core/resource')->getConnection('affinityitems_read');
                 $result = $read->fetchRow($query);
-                if(!$result) throw new Exception('no record in db');
+                if (!$result)
+                    throw new Exception('no record in db');
                 return Mage::getUrl('') . $result['request_path'];
             }
             // if it fails, than use failsafe way with category object loading
@@ -199,9 +198,9 @@ class AffinityEngine_AffinityItems_Helper_Data extends Mage_Core_Helper_Abstract
         Mage::getModel('core/cookie')->set('aeguest', $aeguest, 630720000);
         return;
     }
-    
-    public function isModuleEnabledAndRegistered() {
-        return (bool) Mage::helper('affinityitems/aeadapter')->isRegistered() && $this->getGeneral('enable');
+
+    public function isModuleEnabledAndRegistered($websiteId = 0) {
+        return (bool) Mage::helper('affinityitems/aeadapter')->isRegistered() && $this->getWebsiteConfig('general/enable', $websiteId);
     }
 
     public function canDisplayProduct($product) {
@@ -209,12 +208,16 @@ class AffinityEngine_AffinityItems_Helper_Data extends Mage_Core_Helper_Abstract
         return (bool) (!$product->getStatus() == 2 || $product->getVisibility() == 1 || $stock->getIsInStock() == 0 || count($product->getCategoryIds()) == 0 );
     }
 
+    public function getWebsiteConfig($path, $website_id) {
+        return Mage::app()->getWebsite($website_id)->getConfig(self::XML_PATH . $path);
+    }
+
     public function getIp() {
-    	return long2ip(Mage::helper('core/http')->getRemoteAddr(true));
+        return long2ip(Mage::helper('core/http')->getRemoteAddr(true));
     }
 
     public function getMemberId() {
-        if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+        if (Mage::getSingleton('customer/session')->isLoggedIn()) {
             $customerData = Mage::getSingleton('customer/session')->getCustomer();
             return $customerData->getId();
         } else {
@@ -225,59 +228,72 @@ class AffinityEngine_AffinityItems_Helper_Data extends Mage_Core_Helper_Abstract
     public function getLang() {
         return substr(Mage::app()->getLocale()->getLocaleCode(), 0, 2);
     }
-
+    
     public function deleteCategorySync() {
+        $store_id = Mage::getModel('affinityitems/sync_sync')->getStoreIdByWebsiteId();
+        $rootId = Mage::app()->getStore()->getRootCategoryId();
         $categories = Mage::getModel('catalog/category')->getCollection();
         $categories->addIsActiveFilter()
-        ->addAttributeToFilter(
-            array(
-                array('attribute' => 'ae_sync', 'null' => false),
-                array('attribute' => 'ae_sync', 'eq' => 1),
-                ), '', 'left');
+                ->addFieldToFilter('path', array('like' => "1/" . $rootId . "/%"))
+                ->addAttributeToFilter(
+                        array(
+                    array('attribute' => 'ae_sync', 'null' => false),
+                    array('attribute' => 'ae_sync', 'eq' => 1),
+                        ), '', 'left');
         $categories->setDataToAll('ae_sync', 0)->setDataToAll('observer', true)->setDataToAll('ae_sync_date', null)->save();
     }
 
     public function deleteProductSync() {
         $products = Mage::getModel('catalog/product')->getCollection();
-        $products->addStoreFilter(0)
-        ->addAttributeToFilter(
-            array(
-                array('attribute' => 'ae_sync', 'null' => false),
-                array('attribute' => 'ae_sync', 'eq' => 1),
-                ), '', 'left');
+        $products->addStoreFilter(Mage::getModel('affinityitems/sync_sync')->getStoreIdByWebsiteId())
+                ->addAttributeToFilter(
+                        array(
+                    array('attribute' => 'ae_sync', 'null' => false),
+                    array('attribute' => 'ae_sync', 'eq' => 1),
+                        ), '', 'left');
         $products->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH);
         $products->setDataToAll('ae_sync', 0)->setDataToAll('observer', true)->setDataToAll('ae_sync_date', null)->save();
     }
 
     public function deleteOrderSync() {
-        $orders = Mage::getModel('sales/order')->getCollection();
-        $orders->addFieldToFilter('state', array('in' => array('new', 'pending_payment', 'processing', 'complete', 'payment_review')))
-        ->addFieldToFilter('ae_sync', array('in' => array(1)));
-        $orders->setDataToAll('ae_sync', 0)->setDataToAll('observer', true)->save();
+        $store_filter = (Mage::registry('website_id')) ?  " WHERE `store_name` LIKE '%".Mage::app()->getWebsite(Mage::registry('website_id'))->getName()."%';" : ";";
+        $update_query = "UPDATE `" . Mage::getSingleton('core/resource')->getTableName('sales_flat_order') . "` SET `ae_sync`='0' ".$store_filter;
+        $db_write = Mage::getSingleton('core/resource')->getConnection('affinityitems_write');
+        $result = $db_write->query($update_query);
     }
 
     public function deleteMemberSync() {
-      $members = Mage::getModel('customer/customer')->getCollection();
-      $members->addAttributeToFilter(
-        array(
+        $members = Mage::getModel('customer/customer')->getCollection();
+        $website_id = (Mage::registry('website_id')) ? Mage::registry('website_id') : 0;
+        $members->addAttributeToFilter(
+                array(
             array('attribute' => 'ae_sync', 'null' => false),
             array('attribute' => 'ae_sync', 'eq' => 1),
-            ), '', 'left');
-      $members->setDataToAll('ae_sync', 0)->save();
+                ), '', 'left')
+                ->addFieldToFilter('website_id', $website_id);
+        $members->setDataToAll('ae_sync', 0)->save();
     }
 
     public function deleteCartSync() {
-        $carts = Mage::getModel("affinityitems/cart")->getCollection();
-        foreach ($carts as $cart) {
-            $cart->delete();
-        }
+        $store_filter = (Mage::registry('website_id')) ?  " WHERE `website_id` = '".Mage::registry('website_id')."';" : ";";
+        $update_query = "DELETE FROM `" . Mage::getSingleton('core/resource')->getTableName('ae_cart_repository') . "` ".$store_filter;
+        $db_write = Mage::getSingleton('core/resource')->getConnection('affinityitems_write');
+        $result = $db_write->query($update_query);
     }
 
     public function deleteActionSync() {
-        $actions = Mage::getModel("affinityitems/action")->getCollection();
-        foreach ($actions as $action) {
-            $action->delete();
-        }
+        $store_filter = (Mage::registry('website_id')) ?  " WHERE `website_id` = '".Mage::registry('website_id')."';" : ";";
+        $update_query = "DELETE FROM `" . Mage::getSingleton('core/resource')->getTableName('ae_guest_action_repository') . "` ".$store_filter;
+        $db_write = Mage::getSingleton('core/resource')->getConnection('affinityitems_write');
+        $result = $db_write->query($update_query);
+    }
+
+    public function deleteAllSync() {
+        $this->deleteCategorySync();
+        $this->deleteProductSync();
+        $this->deleteMemberSync();
+        $this->deleteCartSync();
+        $this->deleteActionSync();
     }
 
 }
