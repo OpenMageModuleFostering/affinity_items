@@ -57,10 +57,15 @@ class AffinityEngine_AffinityItems_Model_Sync_Sync extends Mage_Core_Model_Abstr
     public function getOrdersForSync() {
         $collection = Mage::getModel('sales/order')->getCollection();
         $collection->addFieldToFilter('state', array('in' => array('new', 'pending_payment', 'processing', 'complete', 'payment_review')))
+                   ->addFieldToFilter('created_at', array(
+                                      'from'     => strtotime('-6 month', time()),
+                                      'to'       => time(),
+                                      'datetime' => true
+                                      ))
                 ->addFieldToFilter('ae_sync', array('in' => array(null, 0)));
         return $collection;
     }
-
+    
     public function getActionsForSync() {
         $collection = Mage::getModel("affinityitems/action")->getCollection();
         return $collection;

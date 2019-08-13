@@ -52,14 +52,14 @@ class AffinityEngine_AffinityItems_Model_Sdk_Abtesting_Abtesting {
     }
 
     public function filter() {
-        try {
+        /*try {
             $unsr = unserialize($this->helper->getAdvanced('ab_blacklist_ip'));
             if (in_array(Mage::helper('core/http')->getRemoteAddr(false), $unsr['ab_blacklist_ip'])) {
                 $this->cookie->set('aegroup', 'Z', 630720000);
             }
         } catch (Exception $e) {
             $this->logger->log("[ERROR]", $e->getMessage());
-        }
+        }*/
     }
 
     public function forceGroup($group) {

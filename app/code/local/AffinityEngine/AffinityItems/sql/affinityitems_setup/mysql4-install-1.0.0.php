@@ -57,7 +57,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS `' . $this->getTable('ae_sync_rotate') . '` (
 
 $installer->run($sql);
 
-$sql = 'CREATE TABLE IF NOT EXISTS `ae_cat_prod_repository` (
+$sql = 'CREATE TABLE IF NOT EXISTS `' . $this->getTable('ae_cat_prod_repository') . '` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `obj_id` text NOT NULL,
   `obj_type` text NOT NULL,
