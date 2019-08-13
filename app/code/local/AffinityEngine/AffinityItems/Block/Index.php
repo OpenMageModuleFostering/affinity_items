@@ -29,7 +29,7 @@ class AffinityEngine_AffinityItems_Block_Index extends Mage_Core_Block_Template 
                 //$category_id = (Mage::registry('current_category')) ? Mage::registry('current_category')->getId() : false;
                 // $context = "recoCategory";
             } elseif (strpos($path, 'search')) {
-                $refType = "keywords";                
+                $refType = "keywords";
                 $expr = Mage::app()->getRequest()->getParam('q');
                 // $context = "recoSearch";
             } elseif (strpos($path, 'product')) {

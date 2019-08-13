@@ -26,14 +26,18 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
             foreach ($products as $prod) {
                 $prod = Mage::getModel('catalog/product')->setStoreId(0)->load($prod->getId());
                 $aeproduct = new stdClass();
+
+
                 $aeproduct->productId = $prod->getId();
                 $aeproduct->updateDate = $prod->getUpdatedAt();
                 $aeproduct->categoryIds = $prod->getCategoryIds();
                 $aeproduct->recommendable = $this->isRecomendable($prod);
                 $aeproduct->localizations = $this->getLocalizations($prod);
                 $aeproduct->prices = $this->getProductPrices($prod);
+                $aeproduct->imageUrls = $this->getImagesUrl($prod);
                 array_push($aeproductList, $aeproduct);
             }
+
 
             $request = new AffinityEngine_AffinityItems_Model_Sdk_Request_ProductRequest($aeproductList);
             if ($new && count($aeproductList)) {
@@ -117,6 +121,7 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
         $aeproduct->recommendable = $this->isRecomendable($prod);
         $aeproduct->localizations = $this->getLocalizations($prod);
         $aeproduct->prices = $this->getProductPrices($prod);
+
         $request = new AffinityEngine_AffinityItems_Model_Sdk_Request_ProductRequest($aeproduct);
         if (!$is_new) {
             $response = $request->post();
@@ -171,10 +176,39 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
             $plocalization->tags = $tagList;
             $plocalization->attributes = $attributeList;
             $plocalization->features = array();
-
+            $plocalization->pageUrl = $this->helper->getFullProductUrl($p);
             array_push($localizationList, $plocalization);
         }
         return $localizationList;
+    }
+
+    public function getImagesUrl($prod) {
+        $urls = array();
+        
+        Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+        $p = Mage::getModel('catalog/product')->setStoreId(0)->load($prod->getId());
+
+        $resolution = new stdClass();
+        $resolution->name = 'large';
+        $resolution->urls = array((string)Mage::helper('catalog/image')->init($p, 'image')->resize(458, 458));
+        array_push($urls, $resolution);
+        
+        $resolution = new stdClass();
+        $resolution->name = 'medium';
+        $resolution->urls = array((string)Mage::helper('catalog/image')->init($p, 'image')->resize(250, 250));
+        array_push($urls, $resolution);
+
+        $resolution = new stdClass();
+        $resolution->name = 'small';
+        $resolution->urls = array((string)Mage::helper('catalog/image')->init($p, 'image')->resize(98, 98));
+        array_push($urls, $resolution);
+
+        $resolution = new stdClass();
+        $resolution->name = 'other';
+        $resolution->urls = array((string)Mage::helper('catalog/image')->init($p, 'image')->resize(125, 125));
+        array_push($urls, $resolution);
+
+        return $urls;
     }
 
     public function getProductTags($p) {
@@ -204,18 +238,22 @@ class AffinityEngine_AffinityItems_Model_Sync_ProductSync extends AffinityEngine
             $price = new stdClass();
             $price->currency = $iso_code;
             $price->amount = $p->getPrice();
+            $price->displayedPrice = $p->getPrice();
             array_push($listPrice, $price);
         }
         if ($p->getFinalPrice() && $p->getPrice() <> $p->getFinalPrice()) {
             $price = new stdClass();
             $price->currency = $iso_code;
             $price->amount = $p->getFinalPrice();
+            $price->displayedPrice = $p->getFinalPrice();            
             array_push($listPrice, $price);
         }
         if ($p->getSpecialPrice() && $p->getPrice() <> $p->getSpecialPrice()) {
             $price = new stdClass();
             $price->currency = $iso_code;
             $price->amount = $p->getSpecialPrice();
+            $price->displayedPrice = $p->getSpecialPrice();
+            $price->prediscountPrice = $p->getPrice();
             array_push($listPrice, $price);
         }
         return $listPrice;

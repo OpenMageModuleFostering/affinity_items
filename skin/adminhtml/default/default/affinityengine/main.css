@@ -6,7 +6,7 @@
 
 .aelogo {
 	background: url(img/logo.png) no-repeat;
-	width: 249px;
+	width: 108px;
 	height: 80px;
 	margin-left: 10px;
 	position: absolute;
@@ -1884,4 +1884,9 @@
 
 .items-box-description {
 	text-align: center;
+}
+
+.items-box-content {
+  display: block;
+  margin: 2px auto;
 }

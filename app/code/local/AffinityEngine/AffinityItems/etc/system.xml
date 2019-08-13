@@ -42,25 +42,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[You will be logged out from affinity server on change]]></comment>
-                        </dev_prod>
-                        <guest_percentage translate="label">
-                            <label>% guests with recommendations</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Please enter number from 1 to 100]]></comment>
-                            <tooltip><![CDATA[
-			The outcome measurement relies on the AB Testing method, an unbiased and reliable impact measure, no matter the conditions.
-			<br>In this method, a control group of visitors is not eligible for the recommandation.
-			<br>You can control the AB Testing groups :
-			<br>• First test our solution with a low rate of recommandation
-			<br>• Maximize the rate to benefit from the full recommandation impact]]></tooltip>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                        </guest_percentage>                        
+                        </dev_prod>                       
                         <version translate="label">
                             <label>Version</label>
                             <frontend_type>text</frontend_type>
@@ -114,18 +96,6 @@
                             <tooltip><![CDATA[
                                 This option allows you to avoid the resynchronization step when installing a new version of the module.]]></tooltip>
                         </rescind>-->
-                        <ab_blacklist_ip translate="label">
-                            <label>A/B Testing IP Blacklist</label>
-                            <frontend_model>affinityitems/renderer_config_ipblacklist</frontend_model>
-                            <backend_model>adminhtml/system_config_backend_serialized</backend_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment><![CDATA[IP list]]></comment>
-                            <tooltip><![CDATA[
-				This feature lets you blacklist the IP addresses of your own company, so that the statistics are unbiased. For example, if a call center places orders directly on the site, these commands should not be taken into account in the AB Testing. Blacklisted IP addresses do not receive recommendations]]></tooltip>
-                        </ab_blacklist_ip>
                         <sync_count translate="label">
                             <label>Number of elements to be synced</label>
                             <frontend_type>text</frontend_type>

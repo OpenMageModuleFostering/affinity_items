@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+ini_set('memory_limit','256M');
 $mageFilename = '/../../../../../Mage.php';
 require_once dirname(__FILE__) . $mageFilename;
 Mage::app();

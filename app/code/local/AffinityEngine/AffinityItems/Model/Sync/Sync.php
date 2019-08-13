@@ -4,6 +4,7 @@ class AffinityEngine_AffinityItems_Model_Sync_Sync extends Mage_Core_Model_Abstr
 
     public function __construct() {
         $this->logger = Mage::getModel('affinityitems/log');
+        $this->helper = Mage::helper('affinityitems');        
     }
 
     public function getProductsForSync() {

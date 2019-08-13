@@ -53,46 +53,49 @@ $initialsync = (count(Mage::getModel('affinityitems/syncrotate')->getCollection(
 
         <?php } ?>
 
+
+        <?php $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode(); ?>
+
         <div class="items-boxes">
 
             <div class="items-box items-box-black">
-                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['onlineUsers']) ? $statistics['onlineUsers'] : 0; ?></span> <br> <span> <?php echo $this->__('current connected visitors'); ?> </span></p>
+                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['onlineUsers']) ? $statistics['onlineUsers'] : 0; ?></span> <br> <span class="items-box-content"> <?php echo $this->__('current'); echo '<br />' . $this->__('connected visitors'); ?> </span></p>
             </div>
 
             <div class="items-box items-box-black">
-                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['cartsInProgress']) ? $statistics['cartsInProgress'] : 0; ?></span> <br> <span><?php echo $this->__('current carts'); ?></span></p>
+                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['cartsInProgress']) ? $statistics['cartsInProgress'] : 0; ?></span> <br> <span class="items-box-content"><?php echo $this->__('current carts'); ?></span></p>
             </div>
 
             <div class="items-box items-box-purple">
-                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['lastMonthVisitsWithRecommendation']) ? $statistics['lastMonthVisitsWithRecommendation'] : 0; ?></span> <br> <span><?php echo $this->__('visits with recommendations'); ?></span></p>
+                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['lastMonthVisitsWithRecommendation']) ? $statistics['lastMonthVisitsWithRecommendation'] : 0; ?></span> <br> <span class="items-box-content"><?php echo $this->__('visits'); echo '<br />' . $this->__('with recommendations'); ?></span></p>
             </div>
 
             <div class="items-box items-box-purple">
-                <p><span class="items-box-large-font"><?php echo round(($statistics['bestClickRate']['rate']*100), 2); ?> %</span> <br> <span> <?php echo $this->__('recommendations click rate on'); ?> <?php echo $statistics['bestClickRate']['hook'] ?> page*</span></p>
+                <p><span class="items-box-large-font"><?php echo round(($statistics['bestClickRate']['rate']*100), 2); ?> %</span> <br> <span class="items-box-content"> <?php echo $this->__('recommendations');  echo '<br />' . $this->__('click rate on'); ?> <?php echo $statistics['bestClickRate']['hook'] ?> page*</span></p>
             </div>
 
             <div class="items-box items-box-purple">
-                <p><span class="items-box-large-font"><?php echo round($statistics['lastMonthClickersConversationRate'], 2); ?> %</span> <br> <span><?php echo $this->__('transformation rate among clickers'); ?> *</span></p>
+                <p><span class="items-box-large-font"><?php echo round($statistics['lastMonthClickersConversationRate'], 2); ?> %</span> <br> <span class="items-box-content"><?php echo $this->__('transformation'); echo '<br />' . $this->__('rate among clickers'); ?></span></p>
             </div>
 
             <div class="items-box items-box-black">
-                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['lastMonthOrders']) ? $statistics['lastMonthOrders'] : 0;  ?></span> <br> <span> <?php echo $this->__('orders last 30 days'); ?></span></p>
+                <p><span class="items-box-large-font"><?php echo is_numeric($statistics['lastMonthOrders']) ? $statistics['lastMonthOrders'] : 0;  ?></span> <br> <span class="items-box-content"> <?php echo $this->__('orders'); echo '<br />' . $this->__('during last 30 days'); ?></span></p>
             </div>
 
             <div class="items-box items-box-black">
-                <p><span class="items-box-large-font"><?php echo round($statistics['lastMonthSales'], 0) ?></span> <br> <span><?php echo $this->__('sales last 30 days'); ?></span></p>
+                <p><span class="items-box-large-font"><?php echo round($statistics['lastMonthSales'], 0) ?> <?php echo Mage::app()->getLocale()->currency( $currency_code )->getSymbol(); ?></span> <br> <span class="items-box-content"><?php echo $this->__('value sales'); echo '<br />' . $this->__('during last 30 days'); ?> </span></p>
             </div>
 
             <div class="items-box items-box-purple">
-                <p><span class="items-box-large-font"><?php echo is_numeric($data['recommendation']) ? $data['recommendation'] : 0; ?></span> <br> <span><?php echo $this->__('recommandations since 30 days'); ?></span></p>
+                <p><span class="items-box-large-font"><?php echo is_numeric($data['recommendation']) ? $data['recommendation'] : 0; ?></span> <br> <span class="items-box-content"><?php echo $this->__('recommandations'); echo '<br />' . $this->__('during last 30 days'); ?></span></p>
             </div>
 
             <div class="items-box items-box-purple">
-                <p><span class="items-box-large-font"><?php echo round($statistics['salesAfterClick'], 0) ?> €</span> <br> <span><?php echo $this->__('of sales following click on recommendations'); ?> *</span></p>
+                <p><span class="items-box-large-font"><?php echo round($statistics['salesAfterClick'], 0) ?> <?php echo Mage::app()->getLocale()->currency( $currency_code )->getSymbol(); ?></span> <br> <span class="items-box-content"><?php echo $this->__('value sales'); echo '<br />' . $this->__('following click on recommendations'); ?></span></p>
             </div>
 
             <div class="items-box items-box-purple">
-                <p><span class="items-box-large-font"><?php echo round($statistics['salesAfterReco'], 0) ?> €</span> <br> <span><?php echo $this->__('of sales following a recommendation'); ?> *</span></p>
+                <p><span class="items-box-large-font"><?php echo round($statistics['salesAfterReco'], 0) ?> <?php echo Mage::app()->getLocale()->currency( $currency_code )->getSymbol(); ?></span> <br> <span class="items-box-content"><?php echo $this->__('value sales'); echo '<br />' . $this->__('following a recommendation'); ?></span></p>
             </div>
 
         </div>
