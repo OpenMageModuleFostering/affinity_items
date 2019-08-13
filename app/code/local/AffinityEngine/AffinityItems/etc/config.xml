@@ -2,7 +2,7 @@
 <config>
     <modules>
         <AffinityEngine_AffinityItems>
-            <version>1.1.2</version>
+            <version>1.1.3</version>
         </AffinityEngine_AffinityItems>
     </modules>
     
@@ -180,7 +180,7 @@
         <menu>
             <affinityengine module="affinityitems">
                 <title>Affinity Engine</title>
-                <sort_order>100</sort_order>
+                <sort_order>1000</sort_order>
                 <children>
                     <affinityitems module="affinityitems">
                         <title>Dashboard</title>
@@ -192,11 +192,11 @@
                         <sort_order>5</sort_order>
                         <action>affinityitems/adminhtml_affinityitemslog</action>
                     </affinityitems_log>
-                    <affinityitemsconfig module="affinityitems">
+                    <affinityitems_config module="affinityitems">
                         <title>Configuration</title>
                         <sort_order>10</sort_order>
                         <action>adminhtml/system_config/edit/section/affinityitems</action>
-                    </affinityitemsconfig>
+                    </affinityitems_config>
                 </children>
             </affinityengine>
         </menu>
@@ -207,21 +207,24 @@
                 </all>
                 <admin>
                     <children>
-                        <affinity_engine translate="title" module="affinityitems">
+                        <affinityengine translate="title" module="affinityitems">
                             <title>Affinity Engine</title>
                             <sort_order>1000</sort_order>
                             <children>
-                                <affinityitems translate="title">
+                                <affinityitems translate="title" module="affinityitems">
                                     <title>Dashboard</title>
+                                    <sort_order>0</sort_order>
                                 </affinityitems>
-                                <affinityitems_log translate="title">
+                                <affinityitems_log translate="title" module="affinityitems">
                                     <title>Logs</title>
+                                    <sort_order>5</sort_order>
                                 </affinityitems_log>
-                                <affinityitems_config translate="title">
+                                <affinityitems_config translate="title" module="affinityitems">
                                     <title>Configuration</title>
+                                    <sort_order>10</sort_order>
                                 </affinityitems_config>
                             </children>
-                        </affinity_engine>
+                        </affinityengine>
                     </children>
                 </admin>
             </resources>
@@ -276,7 +279,7 @@
                 <li>,ae_product_block_center</li>
                 <product_image_class>ae_img_center</product_image_class>
                 <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_dsecription</product_dsecription_class>
+                <product_dsecription_class>ae_product_description</product_dsecription_class>
                 <price_container_class>ae_price_container_center</price_container_class>
                 <price_class>ae_price_center</price_class>
             </items_home>
@@ -291,7 +294,7 @@
                 <li>,ae_product_block_center</li>
                 <product_image_class>ae_img_center</product_image_class>
                 <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_dsecription</product_dsecription_class>
+                <product_dsecription_class>ae_product_description</product_dsecription_class>
                 <price_container_class>ae_price_container_center</price_container_class>
                 <price_class>ae_price_center</price_class>
             </items_left>
@@ -307,7 +310,7 @@
                 <li>,ae_product_block_center</li>
                 <product_image_class>ae_img_center</product_image_class>
                 <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_dsecription</product_dsecription_class>
+                <product_dsecription_class>ae_product_description</product_dsecription_class>
                 <price_container_class>ae_price_container_center</price_container_class>
                 <price_class>ae_price_center</price_class>
             </items_right>
@@ -323,7 +326,7 @@
                 <li>,ae_product_block_center</li>
                 <product_image_class>ae_img_center</product_image_class>
                 <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_dsecription</product_dsecription_class>
+                <product_dsecription_class>ae_product_description</product_dsecription_class>
                 <price_container_class>ae_price_container_center</price_container_class>
                 <price_class>ae_price_center</price_class>
             </items_cart>
@@ -339,7 +342,7 @@
                 <li>,ae_product_block_center</li>
                 <product_image_class>ae_img_center</product_image_class>
                 <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_dsecription</product_dsecription_class>
+                <product_dsecription_class>ae_product_description</product_dsecription_class>
                 <price_container_class>ae_price_container_center</price_container_class>
                 <price_class>ae_price_center</price_class>
             </items_product>
@@ -355,7 +358,7 @@
                 <li>,ae_product_block_center</li>
                 <product_image_class>ae_img_center</product_image_class>
                 <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_dsecription</product_dsecription_class>
+                <product_dsecription_class>ae_product_description</product_dsecription_class>
                 <price_container_class>ae_price_container_center</price_container_class>
                 <price_class>ae_price_center</price_class>
             </items_search>
@@ -371,7 +374,7 @@
                 <li>,ae_product_block_center</li>
                 <product_image_class>ae_img_center</product_image_class>
                 <product_name_class>ae_products_name_center</product_name_class>
-                <product_dsecription_class>ae_product_dsecription</product_dsecription_class>
+                <product_dsecription_class>ae_product_description</product_dsecription_class>
                 <price_container_class>ae_price_container_center</price_container_class>
                 <price_class>ae_price_center</price_class>
             </items_category>

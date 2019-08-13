@@ -5,7 +5,7 @@ class AffinityEngine_AffinityItems_Adminhtml_AffinityitemslogController extends 
 	public function indexAction() {
 		$this->loadLayout();
 		$this->_title($this->__("AffinityItems"));
-		$this->_setActiveMenu('affinityengine/affinityitems');
+		$this->_setActiveMenu('affinityengine/affinityitems_log');
 		$this->renderLayout();
 	}
 

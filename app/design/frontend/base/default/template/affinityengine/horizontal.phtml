@@ -18,7 +18,7 @@
                             <?php $product = Mage::getModel('catalog/product')->load($product->getId()); ?>
                             <?php if ($helper->canDisplayProduct($product)) continue;?>
                             <?php $pname = $this->escapeHtml($product->getName()); ?>
-                            <li id="<?php echo $helper->getId('li'); ?>" class="<?php echo $helper->getClass('ul'); ?> <?php if(($i % $helper->getConfig('number_products_per_line')) == ($helper->getConfig('number_products_per_line') - 1)) echo 'ae_last_item_of_line'; ?>">
+                            <li id="<?php echo $helper->getId('li'); ?>" class="<?php echo $helper->getClass('li'); ?> <?php if(($i % $helper->getConfig('number_products_per_line')) == ($helper->getConfig('number_products_per_line') - 1)) echo 'ae_last_item_of_line'; ?>">
                                 <a rel="<?php echo $product->getId()?>" href="<?php echo $helper->getFullProductUrl($product); ?>" title="<?php echo $pname ?>" rel="<?php echo $product->getId() ?>"><img class="<?php echo $helper->getClass('product_image_class'); ?>" src="<?php echo Mage::helper('catalog/image')->init($product, 'image')->resize($imagesize[0], $imagesize[1]) ?>" height="<?php echo $imagesize[0]; ?>" width="<?php echo $imagesize[1]; ?>" alt="<?php echo $pname ?>" /></a>
                                 <h5 itemprop="name">
                                     <a rel="<?php echo $product->getId()?>" class="<?php echo $helper->getClass('product_name_class'); ?>" href="<?php echo $helper->getFullProductUrl($product); ?>"  rel="<?php echo $pname ?>" title="<?php echo $pname ?>"><?php echo $pname ?></a>

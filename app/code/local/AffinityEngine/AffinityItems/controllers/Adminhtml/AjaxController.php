@@ -5,15 +5,19 @@ class AffinityEngine_AffinityItems_Adminhtml_AjaxController extends Mage_Adminht
     public function registerAction() {
         if (Mage::app()->getRequest()->getParam('email') != '' && Mage::app()->getRequest()->getParam('password') != '') {
             $customer = new stdClass();
-            $customer->siteName = Mage::app()->getStore()->getName();
+            $customer->siteName = $_SERVER['SERVER_NAME'];
+            $customer->domain = $_SERVER['HTTP_HOST'];
             $customer->email = Mage::app()->getRequest()->getParam('email');
             $customer->password = Mage::app()->getRequest()->getParam('password');
-            $customer->domain = $_SERVER['HTTP_HOST'];
             $customer->origin = 'magentoextension';
             $customer->platform = 'Magento';
             $customer->platformVersion = Mage::getVersion();
             $customer->ip = $_SERVER['SERVER_ADDR'];
-            
+
+            $language = explode('_', Mage::app()->getLocale()->getLocaleCode());
+            $customer->language = $language[0];
+            $customer->refCurrency = Mage::app()->getStore()->getCurrentCurrencyCode();
+
             if(!is_null(Mage::app()->getRequest()->getParam('discountCode')))
                 $customer->code = Mage::app()->getRequest()->getParam('discountCode');
             /*

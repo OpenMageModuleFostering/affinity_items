@@ -86,7 +86,7 @@ foreach ($xml_path as $path) {
         (NULL, 'default', '0', 'affinityitems/" . $path . "/li', ',ae_product_block_center'),
         (NULL, 'default', '0', 'affinityitems/" . $path . "/product_image_class', 'ae_img_center'),
         (NULL, 'default', '0', 'affinityitems/" . $path . "/product_name_class', 'ae_products_name_center'),
-        (NULL, 'default', '0', 'affinityitems/" . $path . "/product_dsecription_class', 'ae_product_dsecription'),
+        (NULL, 'default', '0', 'affinityitems/" . $path . "/product_dsecription_class', 'ae_product_description'),
         (NULL, 'default', '0', 'affinityitems/" . $path . "/price_container_class', 'ae_price_container_center'),
         (NULL, 'default', '0', 'affinityitems/" . $path . "/price_class', 'ae_price_center');";
     $installer->run($sql);
@@ -111,7 +111,7 @@ $sql = "INSERT INTO `" . $this->getTable('core_config_data') . "` (`config_id`, 
         (NULL, 'default', '0', 'affinityitems/advanced/ae_css', ''),
         (NULL, 'default', '0', 'affinityitems/advanced/ae_tracking_js', 0),
         (NULL, 'default', '0', 'affinityitems/developer/log_level','3'),
-        (NULL, 'default', '0', 'affinityitems/general/guest_percentage', '70');";
+        (NULL, 'default', '0', 'affinityitems/general/guest_percentage', '100');";
 
 $installer->run($sql);
 
